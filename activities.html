@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Activities &amp; News (પ્રવૃત્તિઓ અને સમાચાર) | Young India Group – Morbi</title>
+  <meta name="description" content="Empowering youth, serving Morbi. 24/7 emergency blood support, healthcare aid and rural education.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="activities.css">
+</head>
+<body>
+
+  <!-- ===== TOP INFO BAR ===== -->
+  <div class="topbar">
+    <div class="topbar__inner">
+      <div class="topbar__left">
+        <span><i class="fa-solid fa-phone"></i>Morbi 24/7 Helpline: <strong>+91 98250 00000</strong></span>
+        <span><i class="fa-solid fa-headset"></i>Morbi Civil Live Desk: <strong>1800-MORBI-HELP</strong></span>
+        <span><i class="fa-solid fa-shield-halved"></i>Regd Public Trust: E/1428/Morbi</span>
+      </div>
+      <div class="topbar__right">
+        <span class="live-dot">Live Emergency Desk</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HEADER / NAVIGATION ===== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="Young India Group logo" class="brand__logo">
+        <span class="brand__text">
+          <strong>Young India Group – Deven Rabari Foundation</strong>
+          <small>દેવેન રબારી ફાઉન્ડેશન (મોરબી) &nbsp; SPEAK • ACT • CHANGE</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="about.html" class="nav__link">About Us</a>
+        <a href="bloodhub.html" class="nav__link">Blood Hub</a>
+        <a href="activities.html" class="nav__link is-active">Activities</a>
+        <a href="volunteers.html" class="nav__link">Volunteers</a>
+        <a href="index.html#contact" class="nav__link">Contact</a>
+        <a href="bloodhub.html" class="btn btn--sos"><i class="fa-solid fa-triangle-exclamation"></i><span>SOS<br>રક્ત સહાય</span></a>
+        <a href="bloodhub.html" class="btn btn--donate"><i class="fa-solid fa-hand-holding-heart"></i>Donate Now</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO + CATEGORY FILTER ===== -->
+    <section class="activity-hero">
+      <div class="container">
+        <div class="activity-hero__panel">
+          <span class="activity-chip"><i class="fa-solid fa-bullhorn"></i> ફિલ્ડ સેવા અને ગ્રાઉન્ડ અપડેટ્સ • Ground Actions</span>
+          <h1>પ્રવૃત્તિઓ અને સમાચાર</h1>
+          <h2>Activities &amp; Community News</h2>
+          <p>મોરબી અને સમગ્ર સૌરાષ્ટ્રમાં સામાજિક ક્રાંતિ, યુવા નેતૃત્વ, રક્તદાન અને લોકસેવા અભિયાન. Verifiable humanitarian interventions across Morbi.</p>
+          <hr class="activity-hero__rule">
+          <div class="activity-pills">
+            <button type="button" class="activity-pill is-active" data-group="category" data-value="all" aria-pressed="true">બધા / All (148)</button>
+            <button type="button" class="activity-pill" data-group="category" data-value="blood" aria-pressed="false">રક્તદાન કેમ્પ (Blood Drives)</button>
+            <button type="button" class="activity-pill" data-group="category" data-value="education" aria-pressed="false">શિક્ષણ સહાય (Education)</button>
+            <button type="button" class="activity-pill" data-group="category" data-value="medical" aria-pressed="false">આરોગ્ય કેમ્પ (Medical Camps)</button>
+            <button type="button" class="activity-pill" data-group="category" data-value="environment" aria-pressed="false">વૃક્ષારોપણ (Environment)</button>
+            <button type="button" class="activity-pill" data-group="category" data-value="youth" aria-pressed="false">યુવા સંગઠન (Youth Leadership)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SEARCH + TALUKA FILTER ===== -->
+    <section>
+      <div class="container">
+        <div class="activity-toolbar">
+          <label class="activity-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="activitySearch" placeholder="શોધો / Search dispatches..." aria-label="Search dispatches">
+          </label>
+
+          <div class="activity-taluka">
+            <span>તાલુકો / TALUKA:</span>
+            <button type="button" class="activity-pill is-active" data-group="taluka" data-value="all" aria-pressed="true">બધા (All)</button>
+            <button type="button" class="activity-pill" data-group="taluka" data-value="morbi" aria-pressed="false">મોરબી શહેર (Morbi)</button>
+            <button type="button" class="activity-pill" data-group="taluka" data-value="shanala" aria-pressed="false">શનાળા રોડ (Shanala)</button>
+            <button type="button" class="activity-pill" data-group="taluka" data-value="wankaner" aria-pressed="false">વાંકાનેર (Wankaner)</button>
+            <button type="button" class="activity-pill" data-group="taluka" data-value="maliya" aria-pressed="false">માળિયા (Maliya)</button>
+            <button type="button" class="activity-pill" data-group="taluka" data-value="tankara" aria-pressed="false">ટંકારા (Tankara)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FLAGSHIP STORY ===== -->
+    <section>
+      <div class="container">
+        <article class="activity-feature" data-activity data-category="youth" data-taluka="morbi">
+          <div class="activity-feature__image"><img src="assets/photos/01.jpg" alt="Morbi Youth Conclave"></div>
+          <div class="activity-feature__body">
+            <div class="activity-meta">
+              <span><i class="fa-regular fa-calendar"></i> ૧૯ જાન્યુઆરી, ૨૦૨૫</span>
+              <span>ટાઉન હોલ, મોરબી</span>
+            </div>
+            <h2>મોરબી યુવા કન્ક્લેવ: લીડરશીપ અને સામાજિક બ્લુપ્રિન્ટ</h2>
+            <span class="activity-sub">Morbi Youth Conclave: Youth Leadership &amp; Civic Blueprint</span>
+            <p>દેવેન રબારીના નેતૃત્વમાં સૌરાષ્ટ્રના ૬૯ ગામડાઓમાંથી ૩,૮૦૦થી વધુ યુવા આગેવાનો દ્વારા સેવા અને કટોકટી સહાય માટે ત્રિવાર્ષિક યોજનાનું નિર્ધારણ કરવામાં આવ્યું.</p>
+            <div class="activity-feature__actions">
+              <a href="#" class="btn btn--purple">સંપૂર્ણ અહેવાલ (Read) <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="#" class="btn activity-btn-outline"><i class="fa-regular fa-images"></i> ફોટો ગેલેરી (84)</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== RECENT DRIVES ===== -->
+    <section>
+      <div class="container">
+        <div class="activity-head">
+          <div>
+            <h2>તાજેતરના સેવા અભિયાનો અને ગ્રાઉન્ડ ડ્રાઇવ્સ</h2>
+            <p>Recent Ground Drives &amp; Humanitarian Relief Operations</p>
+          </div>
+          <span class="activity-verified">પ્રમાણિત ક્ષેત્રીય અહેવાલો (Verified Dispatches)</span>
+        </div>
+
+        <p class="activity-count" id="resultCount" role="status"></p>
+
+        <div class="grid grid--3" id="activityGrid">
+        <article class="activity-card" data-activity data-category="blood" data-taluka="morbi">
+          <div class="activity-card__image"><img src="assets/photos/02.jpg" alt="Mega blood donation drive" loading="lazy"></div>
+          <div class="activity-card__body">
+            <span class="activity-card__date"><i class="fa-regular fa-calendar"></i> ૦૨ ફેબ્રુઆરી, ૨૦૨૫</span>
+            <h3>સિરામિક હબ મહા રક્તદાન શિબિર</h3>
+          <span class="activity-sub">Mega Blood Donation Drive at Ceramic Hub</span>
+            <p>મોરબી અને રાજકોટમાં ૮૫ ઇમરજન્સી ટીમ દ્વારા ૧,૪૨૦ બોટલ રક્ત એકત્રિત કરવામાં આવ્યું.</p>
+            <div class="activity-card__foot">
+              <span class="activity-card__metric"><i class="fa-solid fa-droplet"></i> ૧,૪૨૦ યુનિટ જમા</span>
+              <a href="#">અહેવાલ <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-card" data-activity data-category="medical" data-taluka="maliya">
+          <div class="activity-card__image"><img src="assets/photos/03.jpg" alt="Free eye and health camp" loading="lazy"></div>
+          <div class="activity-card__body">
+            <span class="activity-card__date"><i class="fa-regular fa-calendar"></i> ૨૭ જાન્યુઆરી, ૨૦૨૫</span>
+            <h3>વિનામૂલ્યે નેત્રદાન અને આરોગ્ય તપાસ કેમ્પ</h3>
+          <span class="activity-sub">Free Eye, Dental &amp; Rural Health Camp</span>
+            <p>૧,૨૦૦ નાગરિકોની તપાસ અને ૭૮૦ જરૂરિયાતમંદોને વિનામૂલ્યે ચશ્માનું વિતરણ.</p>
+            <div class="activity-card__foot">
+              <span class="activity-card__metric activity-card__metric--green"><i class="fa-solid fa-eye"></i> ૭૮૦ ચશ્મા વિતરણ</span>
+              <a href="#">અહેવાલ <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-card" data-activity data-category="environment" data-taluka="shanala">
+          <div class="activity-card__image"><img src="assets/photos/04.jpg" alt="Tree plantation drive" loading="lazy"></div>
+          <div class="activity-card__body">
+            <span class="activity-card__date"><i class="fa-regular fa-calendar"></i> ૨૦ જાન્યુઆરી, ૨૦૨૫</span>
+            <h3>હરિયાળું મોરબી: વૃક્ષારોપણ અભિયાન</h3>
+          <span class="activity-sub">Clean &amp; Green Morbi Tree Plantation</span>
+            <p>શનાળા બાયપાસ ખાતે ૨,૫૦૦ છાંયડા આપતા વૃક્ષોનું રોપણ અને જાળવણી સંકલ્પ.</p>
+            <div class="activity-card__foot">
+              <span class="activity-card__metric activity-card__metric--green"><i class="fa-solid fa-seedling"></i> ૨,૫૦૦ રોપા વાવ્યા</span>
+              <a href="#">અહેવાલ <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-card" data-activity data-category="education" data-taluka="wankaner">
+          <div class="activity-card__image"><img src="assets/photos/05.jpg" alt="Digital learning kits" loading="lazy"></div>
+          <div class="activity-card__body">
+            <span class="activity-card__date"><i class="fa-regular fa-calendar"></i> Jan 12, 2025</span>
+            <h3>Digital Learning Kits for Rural Schools</h3>
+            <p>Supplied 14 village primary schools with solar AV tablets and STEM toolkits to bridge digital divides.</p>
+            <div class="activity-card__foot">
+              <span class="activity-card__metric activity-card__metric--purple"><i class="fa-solid fa-user-graduate"></i> 850 Students Reached</span>
+              <a href="#">Report <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-card" data-activity data-category="relief" data-taluka="maliya">
+          <div class="activity-card__image"><img src="assets/photos/06.jpg" alt="Flood relief taskforce" loading="lazy"></div>
+          <div class="activity-card__body">
+            <span class="activity-card__date"><i class="fa-regular fa-calendar"></i> Relief Standby</span>
+            <h3>Monsoon &amp; Flood Emergency Taskforce</h3>
+            <p>Mobilized 12 rapid response squads with clean drinking water and food rations across coastal basins.</p>
+            <div class="activity-card__foot">
+              <span class="activity-card__metric"><i class="fa-solid fa-box-open"></i> 3,200 Kits Stockpiled</span>
+              <a href="#">Report <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="activity-card" data-activity data-category="youth" data-taluka="morbi">
+          <div class="activity-card__image"><img src="assets/photos/07.jpg" alt="Youth skill building" loading="lazy"></div>
+          <div class="activity-card__body">
+            <span class="activity-card__date"><i class="fa-regular fa-calendar"></i> Dec 28, 2024</span>
+            <h3>Youth Skill Building &amp; Governance</h3>
+            <p>Graduated 240 apprentices in digital bookkeeping, ceramic QA testing, and non-profit governance.</p>
+            <div class="activity-card__foot">
+              <span class="activity-card__metric activity-card__metric--purple"><i class="fa-solid fa-award"></i> 240 Certified</span>
+              <a href="#">Report <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        </div>
+
+        <div class="activity-empty" id="emptyState" hidden>
+          <i class="fa-solid fa-folder-open"></i>
+          <p>No dispatches match your filters.</p>
+          <button type="button" class="btn btn--purple" id="resetFilters"><i class="fa-solid fa-rotate-left"></i> Reset filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== IMPACT BAND ===== -->
+    <section>
+      <div class="container">
+        <div class="activity-stats">
+          <div class="activity-stats__grid">
+            <div class="activity-stats__item"><strong><span data-count="28400" style="font-size: 30px;">28,400</span>+</strong><span>Total Blood Units Donated</span></div>
+            <div class="activity-stats__item"><strong><span data-count="52000" style="font-size: 30px;">52,000</span>+</strong><span>Rural Patients Treated Free</span></div>
+            <div class="activity-stats__item"><strong><span data-count="18500" style="font-size: 30px;">18,500</span>+</strong><span>Students Digitally Equipped</span></div>
+            <div class="activity-stats__item"><strong><span data-count="4200" style="font-size: 30px;">4,200</span>+</strong><span>Registered Youth Cadre</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+
+      <div class="footer__brand">
+        <div class="footer__logo-row">
+          <img src="assets/logo.png" alt="Young India Group logo">
+          <div>
+            <strong>યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન</strong>
+            <small>YOUNG INDIA GROUP • MORBI, GUJARAT</small>
+          </div>
+        </div>
+        <p>“યુવા શક્તિ, સેવા ભક્તિ” - મોરબી જિલ્લામાં ૨૪/૭ તાત્કાલિક રક્ત સહાય, શિક્ષણ સહાય, આરોગ્ય કેમ્પ અને સમાજ કલ્યાણ માટે સતત સમર્પિત લોકસેવા ટ્રસ્ટ.</p>
+
+        <div class="footer__social">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>CORE PAGES (મુખ્ય પૃષ્ઠો)</h4>
+        <ul class="footer__links">
+          <li><a href="index.html">› Home (મુખ્ય પેજ)</a></li>
+          <li><a href="about.html">› About Us (અમારા વિશે)</a></li>
+          <li><a href="blood-hub.html">› Blood Emergency Hub (રક્ત સહાય કેન્દ્ર)</a></li>
+          <li><a href="activities.html">› Activities &amp; News (પ્રવૃત્તિઓ અને સમાચાર)</a></li>
+          <li><a href="index.html#contact">› Volunteer &amp; Contact (સ્વયંસેવક નેટવર્ક)</a></li>
+          <li><a href="#"><i class="fa-solid fa-lock"></i> Admin Portal (એડમિન લોગિન)</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>STATUTORY TRUST &amp; SECRETARIAT (મોરબી સચિવાલય)</h4>
+        <ul class="footer__contact">
+          <li><strong>Morbi Secretariat:</strong> Opp. Civil Hospital Road, Near Shanala Gate, Shanala Road, Morbi - 363641, Gujarat</li>
+          <li><strong>Regd. Public Charitable Trust:</strong> E/1428/Morbi • Gujarat Public Trusts Act • 80G Tax Exemption Registered</li>
+          <li>24/7 Citizen Helpline: <strong>+91 98250 00000 / +91 2822 220000</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© 2024 યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન (Young India Group). Registered Public Charitable Trust No: E/1428/Morbi. All Rights Reserved. 24/7 Helpline: +91 98250 00000</p>
+      <p class="footer__motto">SPEAK (બોલો) &nbsp;•&nbsp; ACT (કરો) &nbsp;•&nbsp; CHANGE (બદલો)</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="activities.js"></script>
+</body>
+</html>

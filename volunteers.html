@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Volunteer Network (સ્વયંસેવક નેટવર્ક) | Young India Group – Morbi</title>
+  <meta name="description" content="Empowering youth, serving Morbi. 24/7 emergency blood support, healthcare aid and rural education.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="volunteers.css">
+</head>
+<body>
+
+  <!-- ===== TOP INFO BAR ===== -->
+  <div class="topbar">
+    <div class="topbar__inner">
+      <div class="topbar__left">
+        <span><i class="fa-solid fa-phone"></i>Morbi 24/7 Helpline: <strong>+91 98250 00000</strong></span>
+        <span><i class="fa-solid fa-headset"></i>Morbi Civil Live Desk: <strong>1800-MORBI-HELP</strong></span>
+        <span><i class="fa-solid fa-shield-halved"></i>Regd Public Trust: E/1428/Morbi</span>
+      </div>
+      <div class="topbar__right">
+        <span class="live-dot">Live Emergency Desk</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HEADER / NAVIGATION ===== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="Young India Group logo" class="brand__logo">
+        <span class="brand__text">
+          <strong>Young India Group – Deven Rabari Foundation</strong>
+          <small>દેવેન રબારી ફાઉન્ડેશન (મોરબી) &nbsp; SPEAK • ACT • CHANGE</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="about.html" class="nav__link">About Us</a>
+        <a href="bloodhub.html" class="nav__link">Blood Hub</a>
+        <a href="activities.html" class="nav__link">Activities</a>
+        <a href="volunteers.html" class="nav__link is-active">Volunteers</a>
+        <a href="index.html#contact" class="nav__link">Contact</a>
+        <a href="bloodhub.html" class="btn btn--sos"><i class="fa-solid fa-triangle-exclamation"></i><span>SOS<br>રક્ત સહાય</span></a>
+        <a href="bloodhub.html" class="btn btn--donate"><i class="fa-solid fa-hand-holding-heart"></i>Donate Now</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO + STATS ===== -->
+    <section class="volunteer-hero">
+      <div class="container">
+        <span class="volunteer-chip"><i class="fa-solid fa-people-group"></i> મોરબી સિવિક વાનગાર્ડ &amp; યુવા સ્વયંસેવક નેટવર્ક</span>
+
+        <h1>Join Morbi’s Largest Youth Civic Network</h1>
+        <p class="volunteer-hero__sub">"યુવા શક્તિ, સેવા ભક્તિ" — Speak. Act. Change.</p>
+
+        <p>
+          Empowering Morbi and Saurashtra through organized civic action, immediate life-saving blood mobilization,
+          municipal relief logistics, and dedicated youth mentorship under the Deven Rabari Foundation.
+        </p>
+
+        <div class="volunteer-stats">
+          <div class="volunteer-stat "><strong><span data-count="1450" style="color: orange;">1,450 </span>+</strong><span>Active Volunteers</span></div>
+          <div class="volunteer-stat volunteer-stat--white"><strong><span data-count="12800">12,800</span>+</strong><span>Blood Units Mobilized</span></div>
+          <div class="volunteer-stat volunteer-stat--green"><strong>14 Wards</strong><span>Morbi Coverage</span></div>
+          <div class="volunteer-stat volunteer-stat--white"><strong>24/7</strong><span>Emergency Response</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FORMS + OFFICE ===== -->
+    <section class="section">
+      <div class="container volunteer-layout">
+
+        <!-- Volunteer registration -->
+        <div class="volunteer-card volunteer-card--top">
+          <div class="volunteer-card__head">
+            <h2><i class="fa-solid fa-user-check"></i> સેવા જોડાણ ફોર્મ <small>(Volunteer Registration)</small></h2>
+            <span class="volunteer-badge">સત્ર ૨૦૨૪-૨૫</span>
+          </div>
+          <p class="volunteer-card__intro">મોરબી નાગરિક સેવા અને કટોકટી રાહત ટુકડીમાં જોડાઓ. Join Morbi's active civic response &amp; emergency relief teams.</p>
+
+          <form id="volunteerForm" novalidate>
+            <div class="volunteer-row">
+              <div class="volunteer-field">
+                <label for="vname">Full Name / પૂરું નામ *</label>
+                <input type="text" id="vname" name="vname" placeholder="e.g. Ramesh Patel / રમેશભાઈ પટેલ">
+              </div>
+              <div class="volunteer-field">
+                <label for="vphone">Phone / WhatsApp / ફોન નંબર *</label>
+                <input type="tel" id="vphone" name="vphone" placeholder="+91 98250 12345">
+              </div>
+            </div>
+
+            <div class="volunteer-row">
+              <div class="volunteer-field">
+                <label for="varea">Area / Ward / વિસ્તાર અથવા વોર્ડ *</label>
+                <select id="varea" name="varea">
+                <option value="">Select your area in Morbi / વિસ્તાર પસંદ કરો...</option>
+                <option>Morbi City (મોરબી શહેર)</option>
+                <option>Shanala Road (શનાળા રોડ)</option>
+                <option>Wankaner (વાંકાનેર)</option>
+                <option>Maliya (માળિયા)</option>
+                <option>Tankara (ટંકારા)</option>
+                <option>Halvad (હળવદ)</option>
+                <option>Other / અન્ય</option>
+                </select>
+              </div>
+              <div class="volunteer-field">
+                <label for="vrole">Primary Role / સેવા ક્ષેત્ર *</label>
+                <select id="vrole" name="vrole">
+                <option value="">Select role / ક્ષેત્ર પસંદ કરો...</option>
+                <option>Blood Donor &amp; Mobilizer (રક્તદાતા)</option>
+                <option>Emergency Responder (ઇમરજન્સી ટીમ)</option>
+                <option>Education &amp; Mentorship (શિક્ષણ સહાય)</option>
+                <option>Medical Camp Support (આરોગ્ય કેમ્પ)</option>
+                <option>Tree Plantation &amp; Cleanliness (વૃક્ષારોપણ)</option>
+                <option>Disaster Relief Team (આપત્તિ રાહત)</option>
+                <option>Digital &amp; Media Volunteer</option>
+                </select>
+              </div>
+            </div>
+
+            <fieldset class="volunteer-field" style="border: 0;">
+              <legend class="volunteer-legend">Availability / સમય અનુકૂળતા</legend>
+              <div class="volunteer-radios">
+                <label class="volunteer-radio"><input type="radio" name="availability" value="weekend"> શનિ-રવિ</label>
+                <label class="volunteer-radio is-checked"><input type="radio" name="availability" value="sos" checked> ઇમરજન્સી SOS</label>
+                <label class="volunteer-radio"><input type="radio" name="availability" value="weekly"> ૪-૮ કલાક/સપ્તાહ</label>
+              </div>
+            </fieldset>
+
+            <label class="volunteer-check">
+              <input type="checkbox" id="vconsent" name="vconsent">
+              <span>હું યંગ ઇન્ડિયા ગ્રુપની આચારસંહિતા સ્વીકારું છું. (I agree to the Foundation's Code of Conduct).</span>
+            </label>
+
+            <button type="submit" class="btn btn--orange btn--block volunteer-submit" id="volunteerSubmit"><i class="fa-regular fa-paper-plane"></i> અરજી સબમિટ કરો (Submit Application)</button>
+            <p class="volunteer-status" id="volunteerStatus" role="status"></p>
+          </form>
+
+          <div class="volunteer-success" id="volunteerSuccess" hidden>
+            <i class="fa-solid fa-circle-check"></i>
+            <h3>આભાર, <span id="volunteerName"></span>!</h3>
+            <p>Your application has been received. Reference ID: <strong id="volunteerRef"></strong></p>
+            <p>A Morbi field coordinator will contact you on WhatsApp within 48 hours.</p>
+            <button type="button" class="btn btn--purple" id="volunteerAgain"><i class="fa-solid fa-rotate-left"></i> Submit another response</button>
+          </div>
+        </div>
+
+        <!-- Office + grievance -->
+        <div class="volunteer-side">
+
+          <div class="volunteer-card">
+            <div class="volunteer-office__head">
+              <div>
+                <i class="fa-solid fa-building"></i>
+                <div>
+                  <h2>મોરબી મુખ્ય કાર્યાલય</h2>
+                  <small>સિવિલ હોસ્પિટલ રોડ, શનાળા રોડ, મોરબી</small>
+                </div>
+              </div>
+              <span class="volunteer-badge volunteer-badge--green">૨૪/૭ કાર્યરત</span>
+            </div>
+
+            <a href="tel:+919825000000" class="volunteer-contact volunteer-contact--sos">
+              <i class="fa-solid fa-asterisk"></i>
+              <div><small>Blood SOS Dispatch</small><strong>+91 98250 00000</strong></div>
+              <i class="fa-solid fa-phone"></i>
+            </a>
+
+            <a href="tel:+912822220000" class="volunteer-contact">
+              <i class="fa-solid fa-building-columns"></i>
+              <div><small>Landline Desk</small><strong>+91 2822 220000</strong></div>
+              <i class="fa-solid fa-phone"></i>
+            </a>
+
+            <a href="mailto:info@youngindiagroup.org" class="volunteer-contact">
+              <i class="fa-regular fa-envelope"></i>
+              <div><small>Official Email</small><strong>info@youngindiagroup.org</strong></div>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a href="https://wa.me/919825000000" target="_blank" rel="noopener" class="btn btn--block volunteer-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Quick Connect</a>
+          </div>
+
+          <div class="volunteer-card">
+            <div class="volunteer-card__head"><h2><i class="fa-regular fa-circle-question"></i> નાગરિક રજૂઆત &amp; ફરિયાદ નિવારણ ડેસ્ક</h2></div>
+            <p class="volunteer-card__intro" style="border: 0; padding-bottom: 0;">તમારી સમસ્યા કે સૂચન સીધા મોરબી ડેસ્ક અધિકારીઓ સુધી પહોંચાડો. (Citizen Help &amp; Grievance Box)</p>
+
+            <form id="grievanceForm" novalidate>
+              <div class="volunteer-row">
+                <div class="volunteer-field"><input type="text" id="gname" name="gname" placeholder="તમારું નામ (Name)" aria-label="Name"></div>
+                <div class="volunteer-field"><input type="tel" id="gphone" name="gphone" placeholder="મોબાઇલ નં. (Phone)" aria-label="Phone"></div>
+              </div>
+              <div class="volunteer-field"><textarea id="gmessage" name="gmessage" placeholder="સમસ્યા અથવા રજૂઆતની વિગત લખો (Describe request)..." aria-label="Request details"></textarea></div>
+              <button type="submit" class="btn btn--purple btn--block" id="grievanceSubmit">રજૂઆત મોકલો (Submit Inquiry) <i class="fa-regular fa-paper-plane"></i></button>
+              <p class="volunteer-status" id="grievanceStatus" role="status"></p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RECOGNITION ===== -->
+    <section class="section section--bordered">
+      <div class="container">
+        <div class="volunteer-recog__head">
+          <h2>સ્વયંસેવક માન્યતા અને સન્માન પ્રમાણપત્ર</h2>
+          <p>માનકીકૃત નાગરિક પ્રમાણપત્રો અને અધિકૃત સેવા બહુમાન (Volunteer Recognition &amp; Accreditations)</p>
+        </div>
+
+        <div class="grid grid--3">
+          <div class="volunteer-recog">
+            <span class="volunteer-recog__icon"><i class="fa-solid fa-certificate"></i></span>
+            <div><h3>નેતૃત્વ પ્રમાણપત્ર</h3><p>Official Trust accreditation &amp; CV credits</p></div>
+          </div>
+          <div class="volunteer-recog">
+            <span class="volunteer-recog__icon volunteer-recog__icon--orange"><i class="fa-solid fa-briefcase-medical"></i></span>
+            <div><h3>રિસ્પોન્ડર બેજ &amp; ID</h3><p>Frontline blood mobilizer ID pin &amp; card</p></div>
+          </div>
+          <div class="volunteer-recog">
+            <span class="volunteer-recog__icon volunteer-recog__icon--green"><i class="fa-solid fa-award"></i></span>
+            <div><h3>વાર્ષિક સેવા ગૌરવ</h3><p>Morbi District annual youth banquet award</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+
+      <div class="footer__brand">
+        <div class="footer__logo-row">
+          <img src="assets/logo.png" alt="Young India Group logo">
+          <div>
+            <strong>યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન</strong>
+            <small>YOUNG INDIA GROUP • MORBI, GUJARAT</small>
+          </div>
+        </div>
+        <p>“યુવા શક્તિ, સેવા ભક્તિ” - મોરબી જિલ્લામાં ૨૪/૭ તાત્કાલિક રક્ત સહાય, શિક્ષણ સહાય, આરોગ્ય કેમ્પ અને સમાજ કલ્યાણ માટે સતત સમર્પિત લોકસેવા ટ્રસ્ટ.</p>
+
+        <div class="footer__social">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>CORE PAGES (મુખ્ય પૃષ્ઠો)</h4>
+        <ul class="footer__links">
+          <li><a href="index.html">› Home (મુખ્ય પેજ)</a></li>
+          <li><a href="about.html">› About Us (અમારા વિશે)</a></li>
+          <li><a href="blood-hub.html">› Blood Emergency Hub (રક્ત સહાય કેન્દ્ર)</a></li>
+          <li><a href="activities.html">› Activities &amp; News (પ્રવૃત્તિઓ અને સમાચાર)</a></li>
+          <li><a href="volunteers.html">› Volunteer &amp; Contact (સ્વયંસેવક નેટવર્ક)</a></li>
+          <li><a href="#"><i class="fa-solid fa-lock"></i> Admin Portal (એડમિન લોગિન)</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>STATUTORY TRUST &amp; SECRETARIAT (મોરબી સચિવાલય)</h4>
+        <ul class="footer__contact">
+          <li><strong>Morbi Secretariat:</strong> Opp. Civil Hospital Road, Near Shanala Gate, Shanala Road, Morbi - 363641, Gujarat</li>
+          <li><strong>Regd. Public Charitable Trust:</strong> E/1428/Morbi • Gujarat Public Trusts Act • 80G Tax Exemption Registered</li>
+          <li>24/7 Citizen Helpline: <strong>+91 98250 00000 / +91 2822 220000</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© 2024 યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન (Young India Group). Registered Public Charitable Trust No: E/1428/Morbi. All Rights Reserved. 24/7 Helpline: +91 98250 00000</p>
+      <p class="footer__motto">SPEAK (બોલો) &nbsp;•&nbsp; ACT (કરો) &nbsp;•&nbsp; CHANGE (બદલો)</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="volunteers.js"></script>
+</body>
+</html>

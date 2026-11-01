@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blood Emergency Hub (રક્ત સહાય કેન્દ્ર) | Young India Group – Morbi</title>
+  <meta name="description" content="Empowering youth, serving Morbi. 24/7 emergency blood support, healthcare aid and rural education.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blood-hub.css">
+</head>
+<body>
+
+  <!-- ===== TOP INFO BAR ===== -->
+  <div class="topbar">
+    <div class="topbar__inner">
+      <div class="topbar__left">
+        <span><i class="fa-solid fa-phone"></i>Morbi 24/7 Helpline: <strong>+91 98250 00000</strong></span>
+        <span><i class="fa-solid fa-headset"></i>Morbi Civil Live Desk: <strong>1800-MORBI-HELP</strong></span>
+        <span><i class="fa-solid fa-shield-halved"></i>Regd Public Trust: E/1428/Morbi</span>
+      </div>
+      <div class="topbar__right">
+        <span class="live-dot">Live Emergency Desk</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HEADER / NAVIGATION ===== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="Young India Group logo" class="brand__logo">
+        <span class="brand__text">
+          <strong>Young India Group – Deven Rabari Foundation</strong>
+          <small>દેવેન રબારી ફાઉન્ડેશન (મોરબી) &nbsp; SPEAK • ACT • CHANGE</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="about.html" class="nav__link">About Us</a>
+        <a href="bloodhub.html" class="nav__link is-active">Blood Hub</a>
+        <a href="activities.html" class="nav__link">Activities</a>
+        <a href="volunteers.html" class="nav__link">Volunteers</a>
+        <a href="contact.html" class="nav__link">Contact</a>
+        <a href="contact.html" class="btn btn--sos"><i class="fa-solid fa-triangle-exclamation"></i><span>SOS<br>રક્ત સહાય</span></a>
+        <a href="bloodhub.html" class="btn btn--donate"><i class="fa-solid fa-hand-holding-heart"></i>Donate Now</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== CRITICAL DEMAND TICKER (filled by blood-hub.js) ===== -->
+    <div class="blood-ticker">
+      <span class="blood-ticker__label"><i class="fa-solid fa-triangle-exclamation"></i><span>CRITICAL DEMAND NOW</span></span>
+      <div class="blood-ticker__window"><div class="blood-ticker__track" id="tickerTrack"></div></div>
+      <span class="blood-ticker__resp">DISPATCH RESPONSE: <strong>AVG 11 MINS</strong></span>
+    </div>
+
+    <!-- ===== HERO + STATS ===== -->
+    <section class="blood-hero">
+      <div class="container">
+        <span class="blood-chip"><i class="fa-solid fa-droplet"></i> ૨૪×૭ તાત્કાલિક રક્ત સહાય કેન્દ્ર • Verified Youth Life Bridge Morbi</span>
+
+        <h1>મોરબી ઇમરજન્સી રક્ત કેન્દ્ર &amp; <span>જીવનદાતા નેટવર્ક (Blood Emergency Hub)</span></h1>
+
+        <p>
+          દેવેન રબારી ફાઉન્ડેશન અને યંગ ઇન્ડિયા ગ્રુપ દ્વારા મોરબી અને સમગ્ર સૌરાષ્ટ્રમાં શૂન્ય વિલંબ (Zero-Delay) ઇમરજન્સી રક્ત
+          સહાય. હોસ્પિટલ ટ્રોમા વોર્ડ, થેલેસેમિયા દર્દીઓ અને અકસ્માત કેસ માટે સમર્પિત યુવા સ્વયંસેવકોનું ત્વરિત નેટવર્ક.
+        </p>
+
+        <div class="grid grid--4 blood-stats">
+          <div class="blood-stat">
+            <div><small>કુલ રક્તદાતાઓ (Total Donors)</small><strong><span data-count="18450" style="font-size: 30px;">18,450</span>+</strong><span>વેરિફાઇડ યુવા રક્તદાતાઓ</span></div>
+            <span class="blood-stat__icon"><i class="fa-solid fa-users"></i></span>
+          </div>
+          <div class="blood-stat">
+            <div><small>બચેલા જીવન (Lives Saved)</small><strong><span data-count="24800" style="font-size: 30px;">24,800</span>+</strong><span>સફળ રક્તદાન મિશન</span></div>
+            <span class="blood-stat__icon blood-stat__icon--orange"><i class="fa-solid fa-heart"></i></span>
+          </div>
+          <div class="blood-stat">
+            <div><small>સક્રિય રક્તવીર (Response Squads)</small><strong><span data-count="45" style="font-size: 30px;">45</span>+</strong><span>મોરબી, વાંકાનેર, ટંકારા, માળિયા</span></div>
+            <span class="blood-stat__icon blood-stat__icon--green"><i class="fa-solid fa-motorcycle"></i></span>
+          </div>
+          <div class="blood-stat">
+            <div><small>સરેરાશ રિસ્પોન્સ (Avg Response)</small><strong>&lt;12 Min</strong><span>ઝડપી પ્રતિસાદ સમય</span></div>
+            <span class="blood-stat__icon blood-stat__icon--red"><i class="fa-solid fa-stopwatch"></i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FORMS ===== -->
+    <section class="section">
+      <div class="container blood-forms">
+
+        <!-- SOS request -->
+        <form class="blood-form" id="sosForm" novalidate>
+          <div class="blood-form__head">
+            <div>
+              <span class="eyebrow">ઇમરજન્સી જરૂરિયાત • IMMEDIATE SOS</span>
+              <h2>તાત્કાલિક રક્ત વિનંતી (Request Blood SOS)</h2>
+            </div>
+            <i class="fa-solid fa-truck-medical"></i>
+          </div>
+
+          <div class="blood-field">
+            <label for="patient">દર્દીનું નામ (Patient Name) *</label>
+            <input type="text" id="patient" name="patient" placeholder="દર્દીનું પૂરું નામ દાખલ કરો">
+          </div>
+
+          <div class="blood-field">
+            <label>જરૂરી બ્લડ ગ્રુપ (Required Blood Group) *</label>
+            <div class="blood-groups" id="groupPicker"></div>
+          </div>
+
+          <div class="blood-row">
+            <div class="blood-field">
+              <label for="units">બોટલ સંખ્યા (Units) *</label>
+              <select id="units" name="units">
+                <option>1 Unit</option><option>2 Units</option><option>3 Units</option><option>4 Units</option>
+              </select>
+            </div>
+            <div class="blood-field">
+              <label for="hospital">હોસ્પિટલ (Hospital Name) *</label>
+              <select id="hospital" name="hospital">
+                <option>Morbi Civil Hospital</option><option>Krishna Hospital</option><option>Ayush Hospital</option><option>Other Hospital</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="blood-field">
+            <label for="attendant">સગા/સહાયક મોબાઇલ નંબર (Attendant Contact) *</label>
+            <input type="tel" id="attendant" name="attendant" placeholder="+91 98250 XXXXX">
+          </div>
+
+          <button type="submit" class="btn btn--orange btn--block blood-btn-sos"><i class="fa-solid fa-tower-broadcast"></i> રક્ત વિનંતી મોકલો (Broadcast Blood SOS)</button>
+          <p class="blood-form__status" id="sosStatus" role="status"></p>
+        </form>
+
+        <!-- Donor registration -->
+        <form class="blood-form" id="donorForm" novalidate>
+          <div class="blood-form__head">
+            <div>
+              <span class="eyebrow">યુવા શક્તિ • YOUTH VANGUARD</span>
+              <h2>રક્તદાતા તરીકે નોંધણી (Register as Donor)</h2>
+            </div>
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+
+          <div class="blood-field">
+            <label for="fullname">પૂરું નામ (Full Name) *</label>
+            <input type="text" id="fullname" name="fullname" placeholder="તમારું પૂરું નામ લખો">
+          </div>
+
+          <div class="blood-row">
+            <div class="blood-field">
+              <label for="group">બ્લડ ગ્રુપ (Blood Group) *</label>
+              <select id="group" name="group" data-blood></select>
+            </div>
+            <div class="blood-field">
+              <label for="age">ઉંમર / Age (18-60) *</label>
+              <input type="number" id="age" name="age" min="18" max="60" placeholder="24">
+            </div>
+          </div>
+
+          <div class="blood-row">
+            <div class="blood-field">
+              <label for="whatsapp">વોટ્સએપ નંબર (WhatsApp No) *</label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="+91 97120 XXXXX">
+            </div>
+            <div class="blood-field">
+              <label for="area">વિસ્તાર / તાલુકો (Area / Taluka) *</label>
+              <select id="area" name="area">
+                <option>Morbi City (મોરબી શહેર)</option><option>Wankaner</option><option>Maliya</option><option>Tankara</option><option>Halvad</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="blood-check">
+            <input type="checkbox" id="consent" name="consent">
+            <span>હું પુષ્ટિ કરું છું કે મારું વજન &gt;50kg છે અને ઇમરજન્સી સમયે સૂચના મેળવવા સંમત છું.</span>
+          </label>
+
+          <button type="submit" class="btn btn--purple btn--block"><i class="fa-solid fa-user-plus"></i> રક્તદાતા બનો (Join Donor Roster)</button>
+          <p class="blood-form__status" id="donorStatus" role="status"></p>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ===== LIVE DISPATCH STREAM ===== -->
+    <section class="section section--bordered">
+      <div class="container">
+
+        <div class="blood-stream__head">
+          <div>
+            <span class="eyebrow live-dot">LIVE CITIZEN DISPATCH STREAM</span>
+            <h2>Ongoing Morbi Emergency Requests</h2>
+          </div>
+
+          <div class="blood-controls">
+            <button type="button" class="blood-toggle" id="autoToggle" aria-pressed="true">
+              <i class="fa-solid fa-rotate"></i> <span id="toggleText">Auto-Refresh (Every 30s)</span>
+            </button>
+            <button type="button" class="blood-refresh" id="refreshNow"><i class="fa-solid fa-arrows-rotate"></i> Refresh now</button>
+            <span id="countdown">Next refresh in 30s</span>
+            <span id="lastUpdated"></span>
+            <strong id="activeCount"></strong>
+          </div>
+        </div>
+
+        <div class="grid grid--3" id="streamList"></div>
+
+      </div>
+    </section>
+
+    <!-- ===== COMPATIBILITY MATRIX ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="blood-matrix">
+
+          <div class="blood-matrix__head">
+            <div>
+              <span class="eyebrow">CLINICAL GUIDANCE REFERENCE</span>
+              <h2>Blood Group Compatibility Matrix</h2>
+              <p>Know exactly who can donate to whom during crisis admissions in Morbi healthcare facilities.</p>
+            </div>
+            <div class="blood-legend"><span><i></i>Compatible</span><span><i></i>Incompatible</span></div>
+          </div>
+
+          <div class="blood-checker">
+            <div class="blood-field">
+              <label for="checkPatient">Patient blood group (દર્દી)</label>
+              <select id="checkPatient" data-blood></select>
+            </div>
+            <div class="blood-field">
+              <label for="checkDonor">Donor blood group (દાતા)</label>
+              <select id="checkDonor" data-blood></select>
+            </div>
+            <button type="button" class="btn btn--purple" id="checkBtn"><i class="fa-solid fa-vial-circle-check"></i> Check</button>
+          </div>
+
+          <div class="blood-result" id="checkResult" role="status"></div>
+
+          <div class="blood-table-wrap">
+            <table class="blood-table" id="matrixTable"></table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NOTES ===== -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container blood-notes">
+        <div class="blood-note">
+          <i class="fa-solid fa-circle-check"></i>
+          <div><strong>100% Voluntary &amp; Free</strong><p>Purely voluntary relief service. Commercial charges strictly prohibited.</p></div>
+        </div>
+        <div class="blood-note">
+          <i class="fa-solid fa-bolt"></i>
+          <div><strong>Rapid Dispatch Process</strong><p>SMS/WhatsApp match ping occurs within 10 minutes of critical hospital SOS requests.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="blood-toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+
+      <div class="footer__brand">
+        <div class="footer__logo-row">
+          <img src="assets/logo.png" alt="Young India Group logo">
+          <div>
+            <strong>યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન</strong>
+            <small>YOUNG INDIA GROUP • MORBI, GUJARAT</small>
+          </div>
+        </div>
+        <p>“યુવા શક્તિ, સેવા ભક્તિ” - મોરબી જિલ્લામાં ૨૪/૭ તાત્કાલિક રક્ત સહાય, શિક્ષણ સહાય, આરોગ્ય કેમ્પ અને સમાજ કલ્યાણ માટે સતત સમર્પિત લોકસેવા ટ્રસ્ટ.</p>
+
+        <div class="footer__social">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>CORE PAGES (મુખ્ય પૃષ્ઠો)</h4>
+        <ul class="footer__links">
+          <li><a href="index.html">› Home (મુખ્ય પેજ)</a></li>
+          <li><a href="about.html">› About Us (અમારા વિશે)</a></li>
+          <li><a href="blood-hub.html">› Blood Emergency Hub (રક્ત સહાય કેન્દ્ર)</a></li>
+          <li><a href="index.html#drives">› Activities &amp; News (પ્રવૃત્તિઓ અને સમાચાર)</a></li>
+          <li><a href="index.html#contact">› Volunteer &amp; Contact (સ્વયંસેવક નેટવર્ક)</a></li>
+          <li><a href="#"><i class="fa-solid fa-lock"></i> Admin Portal (એડમિન લોગિન)</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>STATUTORY TRUST &amp; SECRETARIAT (મોરબી સચિવાલય)</h4>
+        <ul class="footer__contact">
+          <li><strong>Morbi Secretariat:</strong> Opp. Civil Hospital Road, Near Shanala Gate, Shanala Road, Morbi - 363641, Gujarat</li>
+          <li><strong>Regd. Public Charitable Trust:</strong> E/1428/Morbi • Gujarat Public Trusts Act • 80G Tax Exemption Registered</li>
+          <li>24/7 Citizen Helpline: <strong>+91 98250 00000 / +91 2822 220000</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© 2024 યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન (Young India Group). Registered Public Charitable Trust No: E/1428/Morbi. All Rights Reserved. 24/7 Helpline: +91 98250 00000</p>
+      <p class="footer__motto">SPEAK (બોલો) &nbsp;•&nbsp; ACT (કરો) &nbsp;•&nbsp; CHANGE (બદલો)</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="blood-hub.js"></script>
+</body>
+</html>
