@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Command Portal | Young India Group – Morbi</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="adm-top">
+    <div class="adm-top__brand">
+      <button class="adm-menu-btn" id="menuBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+      <img src="../assets/logo.png" alt="Young India Group logo">
+      <div>
+        <h1>Young India Group – Deven Rabari Foundation <span class="adm-tag">MORBI HQ</span></h1>
+        <small><i class="fa-solid fa-circle" style="color:#4ade80;font-size:8px"></i> Admin Command Portal • Morbi Secretariat • Reg No: E/1428/Morbi</small>
+      </div>
+    </div>
+
+    <div class="adm-top__right">
+      <span class="adm-sync"><i class="fa-solid fa-rotate"></i> Live Sync: Operational 24/7</span>
+      <button class="adm-bell" id="bellBtn" aria-label="Notifications"><i class="fa-regular fa-bell"></i><b id="bellCount" hidden>0</b></button>
+      <div class="adm-user">
+        <div><strong>Secretariat Admin</strong><small>ID: YIG-MB-001</small></div>
+        <span class="adm-avatar">DR</span>
+      </div>
+      <button class="adm-logout" id="logoutBtn" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+    </div>
+  </header>
+
+  <div class="adm-shell">
+
+    <!-- ===== STATIC SIDEBAR ===== -->
+    <aside class="adm-side" id="sidebar">
+      <p class="adm-side__label">OPERATIONS CORE</p>
+
+      <a class="adm-link" href="#/dashboard"><i class="fa-solid fa-table-columns"></i> Overview Dashboard</a>
+
+      <div class="adm-group">
+        <button class="adm-group__btn"><i class="fa-solid fa-droplet"></i> Blood Emergency Hub <span class="adm-count is-red" data-badge="blood"></span><i class="fa-solid fa-chevron-down adm-caret"></i></button>
+        <div class="adm-sub"><a href="#/blood/add"><i class="fa-solid fa-plus"></i> Add Request</a><a href="#/blood/view"><i class="fa-regular fa-eye"></i> View Requests</a><a href="#/blood/list"><i class="fa-solid fa-table-list"></i> Manage Requests</a></div>
+      </div>
+
+      <div class="adm-group">
+        <button class="adm-group__btn"><i class="fa-solid fa-user-group"></i> Donor Registry <span class="adm-count" data-badge="donors"></span><i class="fa-solid fa-chevron-down adm-caret"></i></button>
+        <div class="adm-sub"><a href="#/donors/add"><i class="fa-solid fa-plus"></i> Add Donor</a><a href="#/donors/view"><i class="fa-regular fa-eye"></i> View Donors</a><a href="#/donors/list"><i class="fa-solid fa-table-list"></i> Manage Donors</a></div>
+      </div>
+
+      <div class="adm-group">
+        <button class="adm-group__btn"><i class="fa-solid fa-hand-holding-heart"></i> Volunteer Network <span class="adm-count" data-badge="volunteers"></span><i class="fa-solid fa-chevron-down adm-caret"></i></button>
+        <div class="adm-sub"><a href="#/volunteers/add"><i class="fa-solid fa-plus"></i> Add Volunteer</a><a href="#/volunteers/view"><i class="fa-regular fa-eye"></i> View Volunteers</a><a href="#/volunteers/list"><i class="fa-solid fa-table-list"></i> Manage Volunteers</a></div>
+      </div>
+
+      <div class="adm-group">
+        <button class="adm-group__btn"><i class="fa-solid fa-bullhorn"></i> Activities &amp; News<i class="fa-solid fa-chevron-down adm-caret"></i></button>
+        <div class="adm-sub"><a href="#/activities/add"><i class="fa-solid fa-plus"></i> Add Activity</a><a href="#/activities/view"><i class="fa-regular fa-eye"></i> View Activities</a><a href="#/activities/list"><i class="fa-solid fa-table-list"></i> Manage Activities</a></div>
+      </div>
+
+      <div class="adm-group">
+        <button class="adm-group__btn"><i class="fa-solid fa-envelope"></i> Contact Inquiries <span class="adm-count" data-badge="inquiries"></span><i class="fa-solid fa-chevron-down adm-caret"></i></button>
+        <div class="adm-sub"><a href="#/inquiries/add"><i class="fa-solid fa-plus"></i> Add Inquiry</a><a href="#/inquiries/view"><i class="fa-regular fa-eye"></i> View Inquiries</a><a href="#/inquiries/list"><i class="fa-solid fa-table-list"></i> Manage Inquiries</a></div>
+      </div>
+
+      <hr>
+      <p class="adm-side__label">SYSTEM CONTROL</p>
+
+      <div class="adm-group">
+        <button class="adm-group__btn"><i class="fa-solid fa-user-shield"></i> Admin Controls<i class="fa-solid fa-chevron-down adm-caret"></i></button>
+        <div class="adm-sub"><a href="#/admins/view"><i class="fa-regular fa-eye"></i> View Admins</a><a href="#/admins/list"><i class="fa-solid fa-lock"></i> Manage Admins</a></div>
+      </div>
+
+      <div class="adm-group">
+        <button class="adm-group__btn"><i class="fa-solid fa-database"></i> Backup &amp; Recovery<i class="fa-solid fa-chevron-down adm-caret"></i></button>
+        <div class="adm-sub"><a href="#/backup/create"><i class="fa-solid fa-cloud-arrow-up"></i> Create Backup</a><a href="#/backup/restore"><i class="fa-solid fa-clock-rotate-left"></i> Restore Data</a></div>
+      </div>
+    </aside>
+
+    <!-- ===== PAGE CONTENT: every page is plain HTML below; admin.js only shows / hides / fills them ===== -->
+    <main class="adm-main"><div class="adm-view" id="view">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="adm-page" id="page-dashboard">
+      <div class="adm-page-head">
+        <h2>Operations Command Overview <span class="adm-chip"> Live Sync</span></h2>
+        <small><i class="fa-solid fa-bolt"></i> High Alert Ready</small>
+      </div>
+
+      <div class="adm-grid">
+      <div class="adm-stat"><div><small>TOTAL VOLUNTEERS</small><strong data-stat="volunteers">0</strong><em>Morbi District Active Cadre</em></div><span class="adm-stat__icon"><i class="fa-solid fa-people-group"></i></span></div>
+      <div class="adm-stat"><div><small>VERIFIED DONORS</small><strong data-stat="donors">0</strong><em>Across 8 Talukas Network</em></div><span class="adm-stat__icon"><i class="fa-solid fa-hand-holding-heart"></i></span></div>
+      <div class="adm-stat adm-stat--alert"><div><small>URGENT BLOOD</small><strong data-stat="urgent">0</strong><em>Morbi Civil &amp; Private ICU</em></div><span class="adm-stat__icon"><i class="fa-solid fa-heart-pulse"></i></span></div>
+      <div class="adm-stat"><div><small>LIVES SAVED</small><strong data-stat="saved">0</strong><em>Fulfilled requests</em></div><span class="adm-stat__icon"><i class="fa-solid fa-heart"></i></span></div>
+      <div class="adm-stat"><div><small>CIVIC DRIVES</small><strong data-stat="drives">0</strong><em>Camps, Relief &amp; Green Morbi</em></div><span class="adm-stat__icon"><i class="fa-solid fa-bullhorn"></i></span></div>
+      <div class="adm-stat"><div><small>TALUKA CENTERS</small><strong data-stat="talukas">0</strong><em>Grassroots Base</em></div><span class="adm-stat__icon"><i class="fa-solid fa-circle-nodes"></i></span></div>
+      </div>
+
+      <div class="adm-inq">
+        <button class="adm-inq__btn" data-inq="donors">
+          <span class="adm-inq__icon"><i class="fa-solid fa-hand-holding-droplet"></i></span>
+          <div><strong>Donors Inquiry</strong><small>Review new donor sign-ups</small></div>
+          <span class="adm-inq__count" data-count="donors">0</span>
+        </button>
+        <button class="adm-inq__btn" data-inq="volunteers">
+          <span class="adm-inq__icon adm-inq__icon--green"><i class="fa-solid fa-people-group"></i></span>
+          <div><strong>Volunteers Inquiry</strong><small>Review new volunteer applications</small></div>
+          <span class="adm-inq__count" data-count="volunteers">0</span>
+        </button>
+        <button class="adm-inq__btn" data-inq="contact">
+          <span class="adm-inq__icon adm-inq__icon--orange"><i class="fa-solid fa-envelope-open-text"></i></span>
+          <div><strong>Contact Inquiry</strong><small>Open all contact messages</small></div>
+          <span class="adm-inq__count" data-count="contact">0</span>
+        </button>
+      </div>
+
+      <div class="adm-panel">
+        <div class="adm-panel__head">
+          <h3>Live Blood Request Dispatch <small>Morbi Taluka Emergency Desk</small></h3>
+          <div class="adm-actions"><span class="adm-badge adm-badge--red">Live Feed</span><button class="adm-btn adm-btn--sm" id="feedRefresh" title="Refresh"><i class="fa-solid fa-rotate"></i></button></div>
+        </div>
+        <div id="feedArea"></div>
+      </div>
+    </section>
+
+    <!-- ===== BLOOD REQUESTS : VIEW + MANAGE TABLE ===== -->
+    <section class="adm-page" id="page-blood" data-module="blood" data-mode="manage" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-droplet"></i> <span data-slot="title">Manage Blood Requests</span> <span class="adm-chip">Blood Emergency Hub</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-toolbar">
+          <label class="adm-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" data-search placeholder="Search blood requests..."></label>
+          <div class="adm-actions">
+          <a class="adm-btn adm-btn--primary is-manage-only" href="#/blood/add"><i class="fa-solid fa-plus"></i> Add Blood Request</a>
+          </div>
+        </div>
+        <div class="adm-info" data-info></div>
+        <div class="adm-table-wrap">
+          <table class="adm-table">
+            <thead><tr>
+              <th data-key="code">ID</th>
+              <th data-key="patient" data-type="text">Patient Name</th>
+              <th data-key="group" data-type="select">Blood Group</th>
+              <th data-key="units" data-type="number">Units Needed</th>
+              <th data-key="hospital" data-type="select">Hospital</th>
+              <th data-key="ward" data-type="text" class="is-view-only">Ward / Bed</th>
+              <th data-key="contact" data-type="tel">Attendant Phone</th>
+              <th data-key="runner" data-type="text" class="is-view-only">Runner / Coordinator</th>
+              <th data-key="status" data-type="select">Status</th>
+              <th data-key="actions" class="is-manage-only">Action</th>
+            </tr></thead>
+            <tbody data-rows></tbody>
+          </table>
+        </div>
+        <div class="adm-info adm-info--bottom">
+          <span data-info></span>
+          <div class="adm-pager">
+            <button class="adm-btn adm-btn--sm" data-page="prev"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+            <span data-pageno></span>
+            <button class="adm-btn adm-btn--sm" data-page="next">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BLOOD REQUESTS : ADD PAGE ===== -->
+    <section class="adm-page" id="page-blood-add" data-module="blood" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-droplet"></i> Add New Blood Request <span class="adm-chip">Blood Emergency Hub</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-panel__head"><h3>Blood Request Details</h3><a class="adm-btn adm-btn--sm" href="#/blood/list"><i class="fa-solid fa-table-list"></i> View all Blood Requests</a></div>
+        <div class="adm-panel__body">
+      <form class="adm-form" id="form-blood" data-module="blood" novalidate>
+        <div class="adm-field">
+          <label for="blood-patient">Patient Name *</label>
+          <input id="blood-patient" name="patient" type="text" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="blood-group">Blood Group *</label>
+          <select id="blood-group" name="group" required><option value="">Select...</option><option>O-</option><option>O+</option><option>A-</option><option>A+</option><option>B-</option><option>B+</option><option>AB-</option><option>AB+</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="blood-units">Units Needed *</label>
+          <input id="blood-units" name="units" type="number" required min="1" max="10">
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="blood-hospital">Hospital *</label>
+          <select id="blood-hospital" name="hospital" required><option value="">Select...</option><option>Morbi Civil Hospital</option><option>Krishna Multispeciality</option><option>Ayush Hospital</option><option>Other Hospital</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="blood-ward">Ward / Bed</label>
+          <input id="blood-ward" name="ward" type="text">
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="blood-contact">Attendant Phone *</label>
+          <input id="blood-contact" name="contact" type="tel" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="blood-runner">Runner / Coordinator</label>
+          <input id="blood-runner" name="runner" type="text">
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="blood-status">Status *</label>
+          <select id="blood-status" name="status" required><option value="">Select...</option><option>Active</option><option>In-Transit</option><option>Fulfilled</option></select>
+          <small></small>
+        </div>
+        <div class="adm-form__actions">
+          <button type="submit" class="adm-btn adm-btn--primary"><i class="fa-solid fa-floppy-disk"></i> Save Record</button>
+          <button type="reset" class="adm-btn">Reset</button>
+        </div>
+      </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DONORS : VIEW + MANAGE TABLE ===== -->
+    <section class="adm-page" id="page-donors" data-module="donors" data-mode="manage" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-user-group"></i> <span data-slot="title">Manage Donors</span> <span class="adm-chip">Donor Registry</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-toolbar">
+          <label class="adm-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" data-search placeholder="Search donors..."></label>
+          <div class="adm-actions">
+          <button class="adm-btn" data-export="xlsx"><i class="fa-solid fa-file-excel" style="color:#16803c"></i> Excel</button>
+          <button class="adm-btn" data-export="pdf"><i class="fa-solid fa-file-pdf" style="color:#c81e1e"></i> PDF</button>
+          <a class="adm-btn adm-btn--primary is-manage-only" href="#/donors/add"><i class="fa-solid fa-plus"></i> Add Donor</a>
+          </div>
+        </div>
+        <div class="adm-info" data-info></div>
+        <div class="adm-table-wrap">
+          <table class="adm-table">
+            <thead><tr>
+              <th data-key="code">ID</th>
+              <th data-key="name" data-type="text">Full Name</th>
+              <th data-key="group" data-type="select">Blood Group</th>
+              <th data-key="phone" data-type="tel">Phone / WhatsApp</th>
+              <th data-key="age" data-type="number" class="is-view-only">Age (18-60)</th>
+              <th data-key="area" data-type="select">Area / Taluka</th>
+              <th data-key="lastDonation" data-type="date" class="is-view-only">Last Donation</th>
+              <th data-key="status" data-type="select">Status</th>
+              <th data-key="actions" class="is-manage-only">Action</th>
+            </tr></thead>
+            <tbody data-rows></tbody>
+          </table>
+        </div>
+        <div class="adm-info adm-info--bottom">
+          <span data-info></span>
+          <div class="adm-pager">
+            <button class="adm-btn adm-btn--sm" data-page="prev"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+            <span data-pageno></span>
+            <button class="adm-btn adm-btn--sm" data-page="next">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DONORS : ADD PAGE ===== -->
+    <section class="adm-page" id="page-donors-add" data-module="donors" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-user-group"></i> Add New Donor <span class="adm-chip">Donor Registry</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-panel__head"><h3>Donor Details</h3><a class="adm-btn adm-btn--sm" href="#/donors/list"><i class="fa-solid fa-table-list"></i> View all Donors</a></div>
+        <div class="adm-panel__body">
+      <form class="adm-form" id="form-donors" data-module="donors" novalidate>
+        <div class="adm-field">
+          <label for="donors-name">Full Name *</label>
+          <input id="donors-name" name="name" type="text" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="donors-group">Blood Group *</label>
+          <select id="donors-group" name="group" required><option value="">Select...</option><option>O-</option><option>O+</option><option>A-</option><option>A+</option><option>B-</option><option>B+</option><option>AB-</option><option>AB+</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="donors-phone">Phone / WhatsApp *</label>
+          <input id="donors-phone" name="phone" type="tel" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="donors-age">Age (18-60) *</label>
+          <input id="donors-age" name="age" type="number" required min="18" max="60">
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="donors-area">Area / Taluka *</label>
+          <select id="donors-area" name="area" required><option value="">Select...</option><option>Morbi City</option><option>Shanala Road</option><option>Wankaner</option><option>Maliya</option><option>Tankara</option><option>Halvad</option><option>Ravapar</option><option>Other</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="donors-lastDonation">Last Donation</label>
+          <input id="donors-lastDonation" name="lastDonation" type="date">
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="donors-status">Status *</label>
+          <select id="donors-status" name="status" required><option value="">Select...</option><option>Active</option><option>Inactive</option></select>
+          <small></small>
+        </div>
+        <div class="adm-form__actions">
+          <button type="submit" class="adm-btn adm-btn--primary"><i class="fa-solid fa-floppy-disk"></i> Save Record</button>
+          <button type="reset" class="adm-btn">Reset</button>
+        </div>
+      </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VOLUNTEERS : VIEW + MANAGE TABLE ===== -->
+    <section class="adm-page" id="page-volunteers" data-module="volunteers" data-mode="manage" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-hand-holding-heart"></i> <span data-slot="title">Manage Volunteers</span> <span class="adm-chip">Volunteer Network</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-toolbar">
+          <label class="adm-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" data-search placeholder="Search volunteers..."></label>
+          <div class="adm-actions">
+          <button class="adm-btn" data-export="xlsx"><i class="fa-solid fa-file-excel" style="color:#16803c"></i> Excel</button>
+          <button class="adm-btn" data-export="pdf"><i class="fa-solid fa-file-pdf" style="color:#c81e1e"></i> PDF</button>
+          <a class="adm-btn adm-btn--primary is-manage-only" href="#/volunteers/add"><i class="fa-solid fa-plus"></i> Add Volunteer</a>
+          </div>
+        </div>
+        <div class="adm-info" data-info></div>
+        <div class="adm-table-wrap">
+          <table class="adm-table">
+            <thead><tr>
+              <th data-key="code">ID</th>
+              <th data-key="name" data-type="text">Full Name</th>
+              <th data-key="phone" data-type="tel">Phone / WhatsApp</th>
+              <th data-key="area" data-type="select">Area / Ward</th>
+              <th data-key="role" data-type="select">Primary Role</th>
+              <th data-key="availability" data-type="select">Availability</th>
+              <th data-key="status" data-type="select">Status</th>
+              <th data-key="actions" class="is-manage-only">Action</th>
+            </tr></thead>
+            <tbody data-rows></tbody>
+          </table>
+        </div>
+        <div class="adm-info adm-info--bottom">
+          <span data-info></span>
+          <div class="adm-pager">
+            <button class="adm-btn adm-btn--sm" data-page="prev"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+            <span data-pageno></span>
+            <button class="adm-btn adm-btn--sm" data-page="next">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VOLUNTEERS : ADD PAGE ===== -->
+    <section class="adm-page" id="page-volunteers-add" data-module="volunteers" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-hand-holding-heart"></i> Add New Volunteer <span class="adm-chip">Volunteer Network</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-panel__head"><h3>Volunteer Details</h3><a class="adm-btn adm-btn--sm" href="#/volunteers/list"><i class="fa-solid fa-table-list"></i> View all Volunteers</a></div>
+        <div class="adm-panel__body">
+      <form class="adm-form" id="form-volunteers" data-module="volunteers" novalidate>
+        <div class="adm-field">
+          <label for="volunteers-name">Full Name *</label>
+          <input id="volunteers-name" name="name" type="text" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="volunteers-phone">Phone / WhatsApp *</label>
+          <input id="volunteers-phone" name="phone" type="tel" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="volunteers-area">Area / Ward *</label>
+          <select id="volunteers-area" name="area" required><option value="">Select...</option><option>Morbi City</option><option>Shanala Road</option><option>Wankaner</option><option>Maliya</option><option>Tankara</option><option>Halvad</option><option>Ravapar</option><option>Other</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="volunteers-role">Primary Role *</label>
+          <select id="volunteers-role" name="role" required><option value="">Select...</option><option>Blood Donor &amp; Mobilizer</option><option>Emergency Responder</option><option>Education &amp; Mentorship</option><option>Medical Camp Support</option><option>Tree Plantation</option><option>Disaster Relief Team</option><option>Digital &amp; Media</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="volunteers-availability">Availability *</label>
+          <select id="volunteers-availability" name="availability" required><option value="">Select...</option><option>Weekend</option><option>Emergency SOS</option><option>4-8 hrs / week</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="volunteers-status">Status *</label>
+          <select id="volunteers-status" name="status" required><option value="">Select...</option><option>Pending</option><option>Approved</option><option>Rejected</option></select>
+          <small></small>
+        </div>
+        <div class="adm-form__actions">
+          <button type="submit" class="adm-btn adm-btn--primary"><i class="fa-solid fa-floppy-disk"></i> Save Record</button>
+          <button type="reset" class="adm-btn">Reset</button>
+        </div>
+      </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ACTIVITIES : VIEW + MANAGE TABLE ===== -->
+    <section class="adm-page" id="page-activities" data-module="activities" data-mode="manage" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-bullhorn"></i> <span data-slot="title">Manage Activities</span> <span class="adm-chip">Activities &amp; News</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-toolbar">
+          <label class="adm-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" data-search placeholder="Search activities..."></label>
+          <div class="adm-actions">
+          <a class="adm-btn adm-btn--primary is-manage-only" href="#/activities/add"><i class="fa-solid fa-plus"></i> Add Activity</a>
+          </div>
+        </div>
+        <div class="adm-info" data-info></div>
+        <div class="adm-table-wrap">
+          <table class="adm-table">
+            <thead><tr>
+              <th data-key="code">ID</th>
+              <th data-key="title" data-type="text">Title</th>
+              <th data-key="category" data-type="select">Category</th>
+              <th data-key="area" data-type="select">Area / Taluka</th>
+              <th data-key="date" data-type="date">Date</th>
+              <th data-key="metric" data-type="text" class="is-view-only">Impact Metric (e.g. 1,420 Units)</th>
+              <th data-key="status" data-type="select">Status</th>
+              <th data-key="description" data-type="richtext" class="is-view-only">Description</th>
+              <th data-key="actions" class="is-manage-only">Action</th>
+            </tr></thead>
+            <tbody data-rows></tbody>
+          </table>
+        </div>
+        <div class="adm-info adm-info--bottom">
+          <span data-info></span>
+          <div class="adm-pager">
+            <button class="adm-btn adm-btn--sm" data-page="prev"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+            <span data-pageno></span>
+            <button class="adm-btn adm-btn--sm" data-page="next">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ACTIVITIES : ADD PAGE ===== -->
+    <section class="adm-page" id="page-activities-add" data-module="activities" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-bullhorn"></i> Add New Activity <span class="adm-chip">Activities &amp; News</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-panel__head"><h3>Activity Details</h3><a class="adm-btn adm-btn--sm" href="#/activities/list"><i class="fa-solid fa-table-list"></i> View all Activities</a></div>
+        <div class="adm-panel__body">
+      <form class="adm-form" id="form-activities" data-module="activities" novalidate>
+        <div class="adm-field is-wide">
+          <label for="activities-title">Title *</label>
+          <input id="activities-title" name="title" type="text" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="activities-category">Category *</label>
+          <select id="activities-category" name="category" required><option value="">Select...</option><option>Blood Drive</option><option>Medical Camp</option><option>Education</option><option>Environment</option><option>Youth Leadership</option><option>Disaster Relief</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="activities-area">Area / Taluka *</label>
+          <select id="activities-area" name="area" required><option value="">Select...</option><option>Morbi City</option><option>Shanala Road</option><option>Wankaner</option><option>Maliya</option><option>Tankara</option><option>Halvad</option><option>Ravapar</option><option>Other</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="activities-date">Date *</label>
+          <input id="activities-date" name="date" type="date" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="activities-metric">Impact Metric (e.g. 1,420 Units)</label>
+          <input id="activities-metric" name="metric" type="text">
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="activities-status">Status *</label>
+          <select id="activities-status" name="status" required><option value="">Select...</option><option>Published</option><option>Draft</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field is-wide">
+          <label for="activities-description">Description *</label>
+          <div class="adm-editor">
+          <div class="adm-editor__bar">
+            <button type="button" data-cmd="bold" title="Bold"><i class="fa-solid fa-bold"></i></button>
+            <button type="button" data-cmd="italic" title="Italic"><i class="fa-solid fa-italic"></i></button>
+            <button type="button" data-cmd="underline" title="Underline"><i class="fa-solid fa-underline"></i></button>
+            <button type="button" data-cmd="strikeThrough" title="Strikethrough"><i class="fa-solid fa-strikethrough"></i></button>
+            <span></span>
+            <button type="button" data-cmd="formatBlock:h2" title="Heading"><i class="fa-solid fa-heading"></i></button>
+            <button type="button" data-cmd="formatBlock:p" title="Normal paragraph"><i class="fa-solid fa-paragraph"></i></button>
+            <button type="button" data-cmd="formatBlock:blockquote" title="Quote"><i class="fa-solid fa-quote-right"></i></button>
+            <span></span>
+            <button type="button" data-cmd="insertUnorderedList" title="Bullet list"><i class="fa-solid fa-list-ul"></i></button>
+            <button type="button" data-cmd="insertOrderedList" title="Numbered list"><i class="fa-solid fa-list-ol"></i></button>
+            <span></span>
+            <button type="button" data-cmd="justifyLeft" title="Align left"><i class="fa-solid fa-align-left"></i></button>
+            <button type="button" data-cmd="justifyCenter" title="Center"><i class="fa-solid fa-align-center"></i></button>
+            <button type="button" data-cmd="justifyRight" title="Align right"><i class="fa-solid fa-align-right"></i></button>
+            <span></span>
+            <button type="button" data-cmd="createLink" title="Insert link"><i class="fa-solid fa-link"></i></button>
+            <button type="button" data-cmd="unlink" title="Remove link"><i class="fa-solid fa-link-slash"></i></button>
+            <span></span>
+            <button type="button" data-cmd="undo" title="Undo"><i class="fa-solid fa-rotate-left"></i></button>
+            <button type="button" data-cmd="redo" title="Redo"><i class="fa-solid fa-rotate-right"></i></button>
+            <button type="button" data-cmd="removeFormat" title="Clear formatting"><i class="fa-solid fa-eraser"></i></button>
+            <select data-cmd="fontSize" title="Font size"><option value="">Size</option><option value="2">Small</option><option value="3">Normal</option><option value="5">Large</option><option value="6">X-Large</option></select>
+            <input type="color" data-cmd="foreColor" value="#4a1480" title="Text colour">
+          </div>
+          <div class="adm-editor__area" contenteditable="true" data-editor="description" data-required></div>
+        </div>
+          <small></small>
+        </div>
+        <div class="adm-form__actions">
+          <button type="submit" class="adm-btn adm-btn--primary"><i class="fa-solid fa-floppy-disk"></i> Save Record</button>
+          <button type="reset" class="adm-btn">Reset</button>
+        </div>
+      </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INQUIRIES : VIEW + MANAGE TABLE ===== -->
+    <section class="adm-page" id="page-inquiries" data-module="inquiries" data-mode="manage" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-envelope"></i> <span data-slot="title">Manage Inquiries</span> <span class="adm-chip">Contact Inquiries</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-toolbar">
+          <label class="adm-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" data-search placeholder="Search inquiries..."></label>
+          <div class="adm-actions">
+          <a class="adm-btn adm-btn--primary is-manage-only" href="#/inquiries/add"><i class="fa-solid fa-plus"></i> Add Inquiry</a>
+          </div>
+        </div>
+        <div class="adm-info" data-info></div>
+        <div class="adm-table-wrap">
+          <table class="adm-table">
+            <thead><tr>
+              <th data-key="code">ID</th>
+              <th data-key="name" data-type="text">Full Name</th>
+              <th data-key="phone" data-type="tel">Phone / WhatsApp</th>
+              <th data-key="type" data-type="select">Nature of Inquiry</th>
+              <th data-key="status" data-type="select">Status</th>
+              <th data-key="message" data-type="textarea">Message</th>
+              <th data-key="actions" class="is-manage-only">Action</th>
+            </tr></thead>
+            <tbody data-rows></tbody>
+          </table>
+        </div>
+        <div class="adm-info adm-info--bottom">
+          <span data-info></span>
+          <div class="adm-pager">
+            <button class="adm-btn adm-btn--sm" data-page="prev"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+            <span data-pageno></span>
+            <button class="adm-btn adm-btn--sm" data-page="next">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INQUIRIES : ADD PAGE ===== -->
+    <section class="adm-page" id="page-inquiries-add" data-module="inquiries" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-envelope"></i> Add New Inquiry <span class="adm-chip">Contact Inquiries</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-panel__head"><h3>Inquiry Details</h3><a class="adm-btn adm-btn--sm" href="#/inquiries/list"><i class="fa-solid fa-table-list"></i> View all Inquiries</a></div>
+        <div class="adm-panel__body">
+      <form class="adm-form" id="form-inquiries" data-module="inquiries" novalidate>
+        <div class="adm-field">
+          <label for="inquiries-name">Full Name *</label>
+          <input id="inquiries-name" name="name" type="text" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="inquiries-phone">Phone / WhatsApp *</label>
+          <input id="inquiries-phone" name="phone" type="tel" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="inquiries-type">Nature of Inquiry *</label>
+          <select id="inquiries-type" name="type" required><option value="">Select...</option><option>Blood Donor Verification</option><option>Urgent Blood Request</option><option>Volunteer Registration</option><option>Welfare / Scholarship Help</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="inquiries-status">Status *</label>
+          <select id="inquiries-status" name="status" required><option value="">Select...</option><option>New</option><option>In Progress</option><option>Resolved</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field is-wide">
+          <label for="inquiries-message">Message</label>
+          <textarea id="inquiries-message" name="message"></textarea>
+          <small></small>
+        </div>
+        <div class="adm-form__actions">
+          <button type="submit" class="adm-btn adm-btn--primary"><i class="fa-solid fa-floppy-disk"></i> Save Record</button>
+          <button type="reset" class="adm-btn">Reset</button>
+        </div>
+      </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ADMINS : VIEW + MANAGE TABLE ===== -->
+    <section class="adm-page" id="page-admins" data-module="admins" data-mode="manage" hidden>
+    <div class="adm-page-head"><h2><i class="fa-solid fa-user-shield"></i> <span data-slot="title">Manage Admins</span> <span class="adm-chip">Admin Controls</span></h2></div>
+      <div class="adm-panel">
+        <div class="adm-toolbar">
+          <label class="adm-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" data-search placeholder="Search admins..."></label>
+          <div class="adm-actions">
+          <button class="adm-btn is-manage-only" data-lock><i class="fa-solid fa-lock"></i> Lock</button>
+          <button class="adm-btn adm-btn--primary is-manage-only" data-open="modal-admin-add"><i class="fa-solid fa-plus"></i> Add Admin</button>
+          </div>
+        </div>
+        <div class="adm-info" data-info></div>
+        <div class="adm-table-wrap">
+          <table class="adm-table">
+            <thead><tr>
+              <th data-key="code">ID</th>
+              <th data-key="name" data-type="text">Full Name</th>
+              <th data-key="email" data-type="email">Email Address</th>
+              <th data-key="phone" data-type="tel">Phone / WhatsApp</th>
+              <th data-key="role" data-type="select">Access Role</th>
+              <th data-key="status" data-type="select">Status</th>
+              <th data-key="actions" class="is-manage-only">Action</th>
+            </tr></thead>
+            <tbody data-rows></tbody>
+          </table>
+        </div>
+        <div class="adm-info adm-info--bottom">
+          <span data-info></span>
+          <div class="adm-pager">
+            <button class="adm-btn adm-btn--sm" data-page="prev"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+            <span data-pageno></span>
+            <button class="adm-btn adm-btn--sm" data-page="next">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MANAGE ADMINS : PASS KEY GATE ===== -->
+    <section class="adm-page" id="page-admins-gate" hidden>
+      <div class="adm-page-head"><h2><i class="fa-solid fa-user-shield"></i> Manage Admins <span class="adm-chip">Admin Controls</span></h2></div>
+      <div class="adm-panel"><div class="adm-panel__body adm-gate">
+        <i class="fa-solid fa-lock adm-gate__icon"></i>
+        <h3>Pass key required</h3>
+        <p>This section is restricted. Enter the administrator pass key to add, update or delete admins.</p>
+        <div class="adm-field">
+          <label for="passKey">Pass key</label>
+          <input type="password" id="passKey" autocomplete="off" placeholder="Enter pass key">
+          <small>Incorrect pass key. Please try again.</small>
+        </div>
+        <button class="adm-btn adm-btn--primary" id="unlockBtn"><i class="fa-solid fa-unlock"></i> Unlock</button>
+        <p class="adm-gate__hint"><i class="fa-regular fa-eye"></i> Need to see the admin list only? Use <a href="#/admins/view">View Admins</a>.</p>
+      </div></div>
+    </section>
+
+    <!-- ===== BACKUP : CREATE ===== -->
+    <section class="adm-page" id="page-backup-create" hidden>
+      <div class="adm-page-head"><h2><i class="fa-solid fa-database"></i> Create Backup <span class="adm-chip">Backup &amp; Recovery</span></h2></div>
+      <div class="adm-two">
+        <div class="adm-panel"><div class="adm-panel__head"><h3>Create backup now</h3></div><div class="adm-panel__body">
+          <div class="adm-field"><label for="bkNote">Note (optional)</label><input id="bkNote" placeholder="e.g. Before monthly update"></div>
+          <label class="adm-switch"><input type="checkbox" id="autoBackup"> Automatic daily backup</label>
+          <button class="adm-btn adm-btn--primary" id="bkCreate"><i class="fa-solid fa-database"></i> Create Backup Now</button>
+        </div></div>
+        <div class="adm-panel"><div class="adm-panel__head"><h3>Database summary</h3></div><div class="adm-panel__body">
+          <p>
+          Blood Requests: <b data-summary="blood">0</b><br>
+          Donors: <b data-summary="donors">0</b><br>
+          Volunteers: <b data-summary="volunteers">0</b><br>
+          Activities: <b data-summary="activities">0</b><br>
+          Inquiries: <b data-summary="inquiries">0</b><br>
+          Admins: <b data-summary="admins">0</b><br>
+          </p>
+          <p style="margin-top:10px"><small>Last backup: <span data-last-backup>never</span></small></p>
+        </div></div>
+      </div>
+      <div class="adm-panel">
+        <div class="adm-panel__head"><h3>Backup history <small>latest 10 backups are kept</small></h3></div>
+        <div class="adm-table-wrap"><table class="adm-table">
+          <thead><tr><th>Name</th><th>Created</th><th>Type</th><th>Contents</th><th>Size</th><th>Action</th></tr></thead>
+          <tbody data-backup-body></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- ===== BACKUP : RESTORE ===== -->
+    <section class="adm-page" id="page-backup-restore" hidden>
+      <div class="adm-page-head"><h2><i class="fa-solid fa-database"></i> Restore Data <span class="adm-chip">Backup &amp; Recovery</span></h2></div>
+      <div class="adm-panel"><div class="adm-panel__head"><h3>Restore from a backup file</h3></div><div class="adm-panel__body">
+        <p class="adm-note"><i class="fa-solid fa-triangle-exclamation"></i> Restoring replaces all current records. Select a .json file downloaded earlier from this page.</p>
+        <label class="adm-drop"><i class="fa-solid fa-cloud-arrow-up"></i>Click to choose a backup file (.json)<input type="file" id="restoreFile" accept=".json,application/json"></label>
+      </div></div>
+      <div class="adm-panel">
+        <div class="adm-panel__head"><h3>Backup history <small>latest 10 backups are kept</small></h3></div>
+        <div class="adm-table-wrap"><table class="adm-table">
+          <thead><tr><th>Name</th><th>Created</th><th>Type</th><th>Contents</th><th>Size</th><th>Action</th></tr></thead>
+          <tbody data-backup-body></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    </div></main>
+  </div>
+
+  <!-- ===== POPUPS ===== -->
+  <div class="adm-modal" id="modal-confirm" hidden>
+    <div class="adm-modal__box" role="dialog" aria-modal="true">
+      <div class="adm-modal__head"><h3><i class="fa-solid fa-triangle-exclamation" data-slot="icon"></i> <span data-slot="title">Confirm</span></h3><button type="button" class="adm-x" data-close aria-label="Close">&times;</button></div>
+      <div class="adm-modal__body">
+        <p data-slot="message"></p>
+      </div>
+      <div class="adm-modal__foot">
+        <button type="button" class="adm-btn" data-close>Cancel</button>
+        <button type="button" class="adm-btn adm-btn--danger" data-slot="confirm">Yes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="adm-modal" id="modal-message" hidden>
+    <div class="adm-modal__box" role="dialog" aria-modal="true">
+      <div class="adm-modal__head"><h3><i class="fa-solid fa-circle-check" data-slot="icon"></i> <span data-slot="title">Done</span></h3><button type="button" class="adm-x" data-close aria-label="Close">&times;</button></div>
+      <div class="adm-modal__body">
+        <p data-slot="message"></p>
+      </div>
+      <div class="adm-modal__foot">
+        <button type="button" class="adm-btn" data-slot="secondary" hidden></button>
+        <button type="button" class="adm-btn adm-btn--primary" data-slot="primary">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="adm-modal" id="modal-edit" hidden>
+    <div class="adm-modal__box is-wide" role="dialog" aria-modal="true">
+      <div class="adm-modal__head"><h3><i class="fa-solid fa-pen-to-square" data-slot="icon"></i> <span data-slot="title">Update</span></h3><button type="button" class="adm-x" data-close aria-label="Close">&times;</button></div>
+      <div class="adm-modal__body">
+        <div data-slot="form"></div>
+      </div>
+      <div class="adm-modal__foot">
+        <button type="button" class="adm-btn" data-close>Cancel</button>
+        <button type="button" class="adm-btn adm-btn--primary" data-slot="save"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="adm-modal" id="modal-admin-add" hidden>
+    <div class="adm-modal__box is-wide" role="dialog" aria-modal="true">
+      <div class="adm-modal__head"><h3><i class="fa-solid fa-user-plus" data-slot="icon"></i> <span data-slot="title">Add Admin</span></h3><button type="button" class="adm-x" data-close aria-label="Close">&times;</button></div>
+      <div class="adm-modal__body">
+      <form class="adm-form" id="form-admins" data-module="admins" novalidate>
+        <div class="adm-field">
+          <label for="admins-name">Full Name *</label>
+          <input id="admins-name" name="name" type="text" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="admins-email">Email Address *</label>
+          <input id="admins-email" name="email" type="email" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="admins-phone">Phone / WhatsApp *</label>
+          <input id="admins-phone" name="phone" type="tel" required>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="admins-role">Access Role *</label>
+          <select id="admins-role" name="role" required><option value="">Select...</option><option>Super Admin</option><option>Secretariat Admin</option><option>Blood Desk Admin</option><option>Content Editor</option><option>Viewer</option></select>
+          <small></small>
+        </div>
+        <div class="adm-field">
+          <label for="admins-status">Status *</label>
+          <select id="admins-status" name="status" required><option value="">Select...</option><option>Active</option><option>Suspended</option></select>
+          <small></small>
+        </div>
+      </form>
+      </div>
+      <div class="adm-modal__foot">
+        <button type="button" class="adm-btn" data-close>Cancel</button>
+        <button type="button" class="adm-btn adm-btn--primary" data-slot="save"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="adm-modal" id="modal-notifications" hidden>
+    <div class="adm-modal__box is-wide" role="dialog" aria-modal="true">
+      <div class="adm-modal__head"><h3><i class="fa-solid fa-bell" data-slot="icon"></i> <span data-slot="title">Notifications</span></h3><button type="button" class="adm-x" data-close aria-label="Close">&times;</button></div>
+      <div class="adm-modal__body">
+        <div class="adm-notes" data-slot="list"></div>
+      </div>
+      <div class="adm-modal__foot">
+        <button type="button" class="adm-btn" data-close>Close</button>
+        <button type="button" class="adm-btn adm-btn--primary" data-slot="markall"><i class="fa-solid fa-check-double"></i> Mark all as read</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="adm-modal" id="modal-pending" hidden>
+    <div class="adm-modal__box is-wide" role="dialog" aria-modal="true">
+      <div class="adm-modal__head"><h3><i class="fa-solid fa-hand-holding-droplet" data-slot="icon"></i> <span data-slot="title">Inquiries</span></h3><button type="button" class="adm-x" data-close aria-label="Close">&times;</button></div>
+      <div class="adm-modal__body">
+        <div class="adm-pending" data-slot="list"></div>
+      </div>
+      <div class="adm-modal__foot">
+        <button type="button" class="adm-btn" data-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ===== ROW / ITEM TEMPLATES (JavaScript only copies these and fills in the data) ===== -->
+  <template id="tpl-actions">
+    <button class="adm-btn adm-btn--sm" data-act="edit"><i class="fa-solid fa-pen"></i> Update</button>
+    <button class="adm-btn adm-btn--danger adm-btn--sm" data-act="delete"><i class="fa-solid fa-trash"></i> Delete</button>
+  </template>
+
+  <template id="tpl-feed-row">
+    <div class="adm-feed__row">
+      <div class="adm-feed__main">
+        <span class="adm-group-badge" data-f="group"></span>
+        <div>
+          <strong data-f="patient"></strong> <span class="adm-badge" data-f="badge"></span>
+          <small data-f="where"></small>
+        </div>
+      </div>
+      <div class="adm-feed__side">
+        <div>Runner: <b data-f="runner"></b></div>
+        <button class="adm-btn adm-btn--orange adm-btn--sm" data-for="Active" data-act="alert"><i class="fa-solid fa-tower-broadcast"></i> Alert Donors</button>
+        <button class="adm-btn adm-btn--sm" data-for="In-Transit" data-act="track"><i class="fa-solid fa-location-dot"></i> Track</button>
+        <button class="adm-btn adm-btn--green adm-btn--sm" data-for="In-Transit" data-act="done">Mark Done</button>
+        <span class="adm-badge adm-badge--green" data-for="Fulfilled"><i class="fa-solid fa-circle-check"></i> Completed</span>
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-notice">
+    <a class="adm-notice">
+      <span class="adm-notice__icon"><i class="fa-solid"></i></span>
+      <div><strong data-f="title"></strong><small data-f="text"></small></div>
+      <time data-f="time"></time>
+    </a>
+  </template>
+
+  <template id="tpl-pending">
+    <div class="adm-pending__item">
+      <div class="adm-pending__head">
+        <div><strong data-f="name"></strong><small data-f="meta"></small></div>
+        <span class="adm-badge adm-badge--orange">Pending</span>
+      </div>
+      <dl class="adm-pending__grid" data-f="grid"></dl>
+      <div class="adm-pending__foot">
+        <span><i class="fa-solid fa-hourglass-half"></i> Held in the temporary table until approved</span>
+        <button class="adm-btn adm-btn--green" data-approve><i class="fa-solid fa-check"></i> Approve</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="tpl-backup-row">
+    <tr>
+      <td><b data-f="name"></b><br><small data-f="note"></small></td>
+      <td data-f="created"></td>
+      <td><span class="adm-badge" data-f="type"></span></td>
+      <td data-f="records"></td>
+      <td data-f="size"></td>
+      <td class="is-actions">
+        <button class="adm-btn adm-btn--sm" data-bk="download" title="Download"><i class="fa-solid fa-download"></i></button>
+        <button class="adm-btn adm-btn--green adm-btn--sm is-restore-only" data-bk="restore"><i class="fa-solid fa-clock-rotate-left"></i> Restore</button>
+        <button class="adm-btn adm-btn--danger adm-btn--sm" data-bk="delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+      </td>
+    </tr>
+  </template>
+
+  <div class="adm-toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Export libraries (Excel + PDF) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <script src="admin-data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
