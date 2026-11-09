@@ -18,6 +18,13 @@ const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const state = {};                                   // search text + page number for every table
 
+// Pages that live in their own .php file:  route used by the sidebar link  ->  file name.
+// Add a line here every time you move another page into its own file.
+const PAGE_URLS = {
+  "dashboard": "index.php",                 // change if your main file has another name
+  "blood/add": "add-blood-request.php"
+};
+
 
 /* ---------- 1. HELPERS ---------- */
 const plain = (html) => { const d = document.createElement("div"); d.innerHTML = html || ""; return d.textContent.replace(/\s+/g, " ").trim(); };
@@ -48,12 +55,25 @@ function fill(root, values) {
 const copyTemplate = (id) => $("#" + id).content.cloneNode(true);
 
 let toastTimer;
-function toast(message) {
+
+function toast(message, type = "success") {
   const el = $("#toast");
+  if (!el) return;
+
   el.textContent = message;
+  el.classList.toggle("is-error", type === "error");
   el.classList.add("is-show");
+
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove("is-show"), 3000);
+  toastTimer = setTimeout(() => {
+    el.classList.remove("is-show", "is-error");
+  }, 3000);
+}
+
+// Show a PHP flash message, if this page has one.
+const toastElement = $("#toast");
+if (toastElement?.dataset.message) {
+  toast(toastElement.dataset.message, toastElement.dataset.type || "success");
 }
 
 
@@ -103,7 +123,7 @@ function showMessage({ title, message, primary, secondary }) {
 
 /* ---------- 3. FORMS + RICH TEXT EDITOR ---------- */
 const labelOf = (el) => $("label", el.closest(".adm-field")).textContent.replace(/\s*\*$/, "");
-const fieldsOf = (root) => $$("[name], [data-editor]", root);
+const fieldsOf = (root) => $$("[name], [data-editor]", root).filter((el) => el.type !== "hidden");
 
 // Checks every field using the attributes written in the HTML (required, type, min, max)
 function readForm(form) {
@@ -123,12 +143,19 @@ function readForm(form) {
     else if (!empty && el.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = "Enter a valid email address.";
     else if (!empty && el.type === "number" && (Number(value) < Number(el.min) || Number(value) > Number(el.max))) error = `Enter a value between ${el.min} and ${el.max}.`;
 
-    const wrapper = el.closest(".adm-field");
-    wrapper.classList.toggle("has-error", !!error);
-    $("small", wrapper).textContent = error;
-    if (error) ok = false;
 
-    data[name] = el.type === "number" && value !== "" ? Number(value) : value;
+const wrapper = el.closest(".adm-field");
+
+if (wrapper) {
+  wrapper.classList.toggle("has-error", !!error);
+
+  const message = $("small", wrapper);
+  if (message) message.textContent = error;
+}
+
+if (error) ok = false;
+
+data[name] = el.type === "number" && value !== "" ? Number(value) : value;
   });
 
   return { ok, data };
@@ -293,24 +320,31 @@ function initAddForms() {
   $$("section[id$='-add'] form").forEach((form) => {
     const key = form.dataset.module;
 
-    form.addEventListener("reset", () => setTimeout(() => resetForm(form)));
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const { ok, data } = readForm(form);
-      if (!ok) return toast("Please fix the highlighted fields.");
+form.addEventListener("submit", async (e) => {
+  // Let PHP process forms explicitly marked for normal submission.
+  if (form.hasAttribute("data-php-submit")) return;
 
-      const record = await db.add(key, data);                 // saved to the database
-      refreshBadges();
-      showMessage({
-        title: "Record Added", message: `${MODULES[key].singular} saved successfully with ID ${record.code}.`,
-        secondary: { text: "Add Another", onClick: () => resetForm(form) },
-        primary: { text: "View List", onClick: () => { location.hash = `#/${key}/list`; } }
-      });
-    });
+  e.preventDefault();
+  const { ok, data } = readForm(form);
+  if (!ok) return toast("Please fix the highlighted fields.");
+
+  const record = await db.add(key, data);
+  refreshBadges();
+  showMessage({
+    title: "Record Added",
+    message: `${MODULES[key].singular} saved successfully with ID ${record.code}.`,
+    secondary: { text: "Add Another", onClick: () => resetForm(form) },
+    primary: {
+      text: "View List",
+      onClick: () => { location.hash = `#/${key}/list`; }
+    }
+     });
   });
+});
 
   // Add Admin popup
-  slot($("#modal-admin-add"), "save").onclick = async () => {
+  const adminModal = $("#modal-admin-add");
+  if (adminModal) slot(adminModal, "save").onclick = async () => {
     const form = $("#form-admins");
     const { ok, data } = readForm(form);
     if (!ok) return;
@@ -690,21 +724,55 @@ async function refreshBadges() {
   $("#bellCount").hidden = unread === 0;
 }
 
-function route() {
-  const path = location.hash.replace(/^#\/?/, "") || "dashboard";
+// The section of THIS file that belongs to a route (null when it is in another .php file)
+function pageFor(path) {
   const [key, action] = path.split("/");
+  if (key === "backup") return $("#page-backup-" + (action === "restore" ? "restore" : "create"));
+  if (!MODULES[key]) return $("#page-dashboard");
+  if (key === "admins" && action !== "view" && !auth.isUnlocked()) return $("#page-admins-gate");
+  if (action === "add" && key !== "admins") return $(`#page-${key}-add`);
+  return $("#page-" + key);
+}
 
+// The route of the page that is written in this file (used when the address has no #hash)
+function pathOf(page) {
+  const id = page.id.replace("page-", "");
+  if (id === "dashboard") return "dashboard";
+  if (id.startsWith("backup-")) return id.replace("-", "/");
+  if (id === "admins-gate") return "admins/list";
+  return id.endsWith("-add") ? id.replace("-add", "/add") : id + "/list";
+}
+
+function route() {
   closeModal();
-  $$(".adm-link, .adm-sub a").forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === "#/" + path));
+  const hash = location.hash.replace(/^#\/?/, "");
+  const first = $(".adm-page");
+  const path = hash || (first ? pathOf(first) : "dashboard");
+  const [key, action] = path.split("/");
+  const here = location.pathname.split("/").pop();
+
+  // Highlight the sidebar link (works for #/route links and for real .php links)
+  $$(".adm-link, .adm-sub a").forEach((a) => {
+    const href = a.getAttribute("href");
+    a.classList.toggle("is-active", href === "#/" + path || href === here || (!!PAGE_URLS[path] && href === PAGE_URLS[path]));
+  });
   const activeSub = $(".adm-sub a.is-active");
   if (activeSub) activeSub.closest(".adm-group").classList.add("is-open");
 
-  if (key === "backup") { showPage($("#page-backup-" + (action === "restore" ? "restore" : "create"))); renderBackups(); }
-  else if (key === "admins" && action !== "view" && !auth.isUnlocked()) { showPage($("#page-admins-gate")); $("#passKey").focus(); }
+  const target = pageFor(path);
+  if (!target) {                                              // this page is written in another file
+    if (PAGE_URLS[path]) { location.href = PAGE_URLS[path]; return; }
+    toast("This page is not available yet.");
+    if (first && hash) { history.replaceState(null, "", location.pathname + location.search); route(); }
+    return;
+  }
+
+  if (key === "backup") { showPage(target); renderBackups(); }
+  else if (target.id === "page-admins-gate") { showPage(target); $("#passKey").focus(); }
   else if (key === "admins") showList("admins", action === "view" ? "view" : "manage");
-  else if (MODULES[key] && action === "add") showPage($(`#page-${key}-add`));
+  else if (MODULES[key] && action === "add") showPage(target);
   else if (MODULES[key]) showList(key, action === "view" ? "view" : "manage");
-  else { showPage($("#page-dashboard")); renderDashboard(); }
+  else { showPage(target); renderDashboard(); }
 
   $("#sidebar").classList.remove("is-open");
 }
@@ -726,10 +794,15 @@ $("#logoutBtn").onclick = () => confirmDialog({
 
 initTables();
 initAddForms();
-initDashboard();
-initBackup();
-initGate();
+if ($("#feedRefresh")) initDashboard();
+if ($("#bkCreate")) initBackup();
+if ($("#unlockBtn")) initGate();
 window.addEventListener("hashchange", route);
 runAutoBackup();
 refreshBadges();
 route();
+
+
+
+
+

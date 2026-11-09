@@ -18,49 +18,9 @@
 </head>
 <body>
 
-  <!-- ===== TOP INFO BAR ===== -->
-  <div class="topbar">
-    <div class="topbar__inner">
-      <div class="topbar__left">
-        <span><i class="fa-solid fa-phone"></i>Morbi 24/7 Helpline: <strong>+91 98250 00000</strong></span>
-        <span><i class="fa-solid fa-headset"></i>Morbi Civil Live Desk: <strong>1800-MORBI-HELP</strong></span>
-        <span><i class="fa-solid fa-shield-halved"></i>Regd Public Trust: E/1428/Morbi</span>
-      </div>
-      <div class="topbar__right">
-        <span class="live-dot">Live Emergency Desk</span>
-      </div>
-    </div>
-  </div>
+<?php include("header.php"); ?>
 
-  <!-- ===== HEADER / NAVIGATION ===== -->
-  <header class="header" id="header">
-    <div class="header__inner">
 
-      <a href="index.html" class="brand">
-        <img src="assets/logo.png" alt="Young India Group logo" class="brand__logo">
-        <span class="brand__text">
-          <strong>Young India Group – Deven Rabari Foundation</strong>
-          <small lang="gu">દેવેન રબારી ફાઉન્ડેશન (મોરબી) &nbsp; SPEAK • ACT • CHANGE</small>
-        </span>
-      </a>
-
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="nav" id="nav">
-        <a href="index.html" class="nav__link is-active">Home</a>
-        <a href="about.html" class="nav__link">About Us</a>
-        <a href="bloodhub.html" class="nav__link">Blood Hub</a>
-        <a href="activities.html" class="nav__link">Activities</a>
-        <a href="volunteers.html" class="nav__link">Volunteers</a>
-        <a href="contact.html" class="nav__link">Contact</a>
-        <a href="bloodhub.html" class="btn btn--sos"><i class="fa-solid fa-triangle-exclamation"></i><span lang="gu">SOS<br>રક્ત સહાય</span></a>
-        <a href="bloodhub.html" class="btn btn--donate"><i class="fa-solid fa-hand-holding-heart"></i>Donate Now</a>
-      </nav>
-
-    </div>
-  </header>
 
   <main>
 
@@ -414,56 +374,7 @@
 
   </main>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container footer__grid">
-
-      <div class="footer__brand">
-        <div class="footer__logo-row">
-          <img src="assets/logo.png" alt="Young India Group logo">
-          <div>
-            <strong>યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન</strong>
-            <small>YOUNG INDIA GROUP • MORBI, GUJARAT</small>
-          </div>
-        </div>
-        <p>“યુવા શક્તિ, સેવા ભક્તિ” - મોરબી જિલ્લામાં ૨૪/૭ તાત્કાલિક રક્ત સહાય, શિક્ષણ સહાય, આરોગ્ય કેમ્પ અને સમાજ કલ્યાણ માટે સતત સમર્પિત લોકસેવા ટ્રસ્ટ.</p>
-
-        <div class="footer__social">
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-      </div>
-
-      <div>
-        <h4>CORE PAGES (મુખ્ય પૃષ્ઠો)</h4>
-        <ul class="footer__links">
-          <li><a href="index.html">› Home (મુખ્ય પેજ)</a></li>
-          <li><a href="about.html">› About Us (અમારા વિશે)</a></li>
-          <li><a href="#services">› Blood Emergency Hub (રક્ત સહાય કેન્દ્ર)</a></li>
-          <li><a href="#drives">› Activities &amp; News (પ્રવૃત્તિઓ અને સમાચાર)</a></li>
-          <li><a href="#contact">› Volunteer &amp; Contact (સ્વયંસેવક નેટવર્ક)</a></li>
-          <li><a href="#"><i class="fa-solid fa-lock"></i> Admin Portal (એડમિન લોગિન)</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>STATUTORY TRUST &amp; SECRETARIAT (મોરબી સચિવાલય)</h4>
-        <ul class="footer__contact">
-          <li><strong>Morbi Secretariat:</strong> Opp. Civil Hospital Road, Near Shanala Gate, Shanala Road, Morbi - 363641, Gujarat</li>
-          <li><strong>Regd. Public Charitable Trust:</strong> E/1428/Morbi • Gujarat Public Trusts Act • 80G Tax Exemption Registered</li>
-          <li>24/7 Citizen Helpline: <strong>+91 98250 00000 / +91 2822 220000</strong></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="container footer__bottom">
-      <p>© 2024 યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન (Young India Group). Registered Public Charitable Trust No: E/1428/Morbi. All Rights Reserved. 24/7 Helpline: +91 98250 00000</p>
-      <p class="footer__motto">SPEAK (બોલો) &nbsp;•&nbsp; ACT (કરો) &nbsp;•&nbsp; CHANGE (બદલો)</p>
-    </div>
-  </footer>
+  <?php include("footer.php"); ?>
 
   <script src="script.js"></script>
 </body>
