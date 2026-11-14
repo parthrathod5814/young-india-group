@@ -1,4 +1,7 @@
-
+<?php
+require_once __DIR__ . '/inc/auth.php';
+require_login();
+?>
     <!-- ===== ACTIVITIES : ADD PAGE ===== -->
     <section class="adm-page" id="page-activities-add" data-module="activities" hidden>
     <div class="adm-page-head"><h2><i class="fa-solid fa-bullhorn"></i> Add New Activity <span class="adm-chip">Activities &amp; News</span></h2></div>

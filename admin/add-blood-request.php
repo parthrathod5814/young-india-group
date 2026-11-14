@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once __DIR__ . '/inc/auth.php';
+require_login();
 
 require_once __DIR__ . '/inc/config.php';
 $pdo = db();
@@ -134,7 +135,6 @@ function selectedOption(string $current, string $option): string
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <?php include __DIR__ . '/inc/head.php'; ?>
 
 <body>
@@ -145,7 +145,7 @@ function selectedOption(string $current, string $option): string
 
     <main class="adm-main">
       <div class="adm-view" id="view">
-        <section class="adm-page" id="page-blood-add" data-module="blood">
+        <section class="adm-page" id="page-blood-add" >
           <div class="adm-page-head">
             <h2>
               <i class="fa-solid fa-droplet"></i>
@@ -193,6 +193,7 @@ function selectedOption(string $current, string $option): string
                     id="blood-patient"
                     name="patient"
                     type="text"
+                    minlength="2"
                     maxlength="120"
                     required
                     value="<?= escapeOutput($values['patient']) ?>"
@@ -236,6 +237,7 @@ function selectedOption(string $current, string $option): string
                     type="number"
                     min="1"
                     max="10"
+                    step="1"
                     required
                     value="<?= escapeOutput($values['units']) ?>"
                   >
@@ -248,6 +250,7 @@ function selectedOption(string $current, string $option): string
                     id="blood-hospital-address"
                     name="hospital_address"
                     type="text"
+                    minlength="2"
                     maxlength="255"
                     required
                     value="<?= escapeOutput($values['hospital_address']) ?>"
@@ -273,7 +276,10 @@ function selectedOption(string $current, string $option): string
                     id="blood-contact"
                     name="contact"
                     type="tel"
+                    minlength="10"
                     maxlength="20"
+                    pattern="[0-9+() .-]{10,20}"
+                    title="Enter a valid phone number"
                     required
                     value="<?= escapeOutput($values['contact']) ?>"
                   >
@@ -329,8 +335,6 @@ function selectedOption(string $current, string $option): string
     data-type="<?= escapeOutput($toastType) ?>"
   ></div>
 
-  <!-- admin-data.js is required by admin.js; keep this order -->
-  <!-- <script src="admin-data.js"></script> -->
-  <script src="admin.js"></script>
+<script src="admin.js"></script>
 </body>
 </html>

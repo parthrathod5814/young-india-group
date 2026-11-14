@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `volunteers` (
   `availability` ENUM('Weekend','Emergency SOS','4-8 hrs / week') NOT NULL,
   `status`       ENUM('Pending','Approved','Rejected') NOT NULL DEFAULT 'Pending',
   `approved_by`  INT UNSIGNED NULL,
-  `approved_at`  DATETIME NULL,
+  `approved_at`  DATETIME NULL, 
   `created_by`   INT UNSIGNED NULL,
   `created_at`   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

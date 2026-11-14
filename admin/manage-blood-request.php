@@ -1,5 +1,8 @@
+
 <?php
-session_start();
+require_once __DIR__ . '/inc/auth.php';
+require_login();
+
 
 require_once __DIR__ . '/inc/config.php'; // Must provide a PDO connection in $pdo
 $pdo = db();
@@ -226,7 +229,7 @@ try {
                 <table class="adm-table">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>No.</th>
                       <th>Patient Name</th>
                       <th>Blood Group</th>
                       <th>Patient Condition</th>
@@ -244,9 +247,9 @@ try {
                           <td colspan="10">No blood requests have been added yet.</td>
                         </tr>
                       <?php else: ?>
-                        <?php foreach ($requests as $request): ?>
+                        <?php foreach ($requests as $index => $request): ?>
                           <tr class="blood-row">
-                            <td><?= escapeOutput($request['id']) ?></td>
+                            <td><?= $index + 1 ?></td>
                             <td><?= escapeOutput($request['patient']) ?></td>
                             <td><?= escapeOutput($request['blood_group']) ?></td>
                             <td><?= escapeOutput($request['patient_condition']) ?></td>
@@ -339,7 +342,14 @@ try {
 
           <div class="adm-field">
             <label for="edit-patient">Patient Name *</label>
-            <input id="edit-patient" name="patient" type="text" maxlength="120" required>
+            <input
+                id="edit-patient"
+                name="patient"
+                type="text"
+                minlength="2"
+                maxlength="120"
+                required
+              >
             <small></small>
           </div>
 
@@ -367,13 +377,28 @@ try {
 
           <div class="adm-field">
             <label for="edit-units">Units Needed *</label>
-            <input id="edit-units" name="units" type="number" min="1" max="10" required>
+            <input
+                id="edit-units"
+                name="units"
+                type="number"
+                min="1"
+                max="10"
+                step="1"
+                required
+              >
             <small></small>
           </div>
 
           <div class="adm-field">
             <label for="edit-hospital-address">Hospital Name / Address *</label>
-            <input id="edit-hospital-address" name="hospital_address" type="text" maxlength="255" required>
+             <input
+                  id="edit-hospital-address"
+                  name="hospital_address"
+                  type="text"
+                  minlength="2"
+                  maxlength="255"
+                  required
+                >
             <small></small>
           </div>
 
@@ -385,7 +410,16 @@ try {
 
           <div class="adm-field">
             <label for="edit-contact">Attendant Phone *</label>
-            <input id="edit-contact" name="contact" type="tel" maxlength="20" required>
+            <input
+                    id="edit-contact"
+                    name="contact"
+                    type="tel"
+                    minlength="10"
+                    maxlength="20"
+                    pattern="[0-9+() .-]{10,20}"
+                    title="Enter a valid phone number"
+                    required
+                  >
             <small></small>
           </div>
 
@@ -542,31 +576,9 @@ try {
         }, 5000);
       }
 
-      // Sidebar controls, without initializing admin.js's separate table renderer.
-      const menuButton = document.getElementById('menuBtn');
-      const sidebar = document.getElementById('sidebar');
-
-      if (menuButton && sidebar) {
-        menuButton.addEventListener('click', () => {
-          sidebar.classList.toggle('is-open');
-        });
-      }
-
-      document.querySelectorAll('.adm-group__btn').forEach(button => {
-        button.addEventListener('click', () => {
-          const group = button.closest('.adm-group');
-          if (!group) return;
-
-          const wasOpen = group.classList.contains('is-open');
-          document.querySelectorAll('.adm-group').forEach(item => {
-            item.classList.remove('is-open');
-          });
-          group.classList.toggle('is-open', !wasOpen);
-        });
-      });
-
       renderRows();
     })();
   </script>
+   <script src="admin.js"></script>
 </body>
 </html>

@@ -29,7 +29,7 @@
           <li><a href="#services">› Blood Emergency Hub (રક્ત સહાય કેન્દ્ર)</a></li>
           <li><a href="#drives">› Activities &amp; News (પ્રવૃત્તિઓ અને સમાચાર)</a></li>
           <li><a href="#contact">› Volunteer &amp; Contact (સ્વયંસેવક નેટવર્ક)</a></li>
-          <li><a href="#"><i class="fa-solid fa-lock"></i> Admin Portal (એડમિન લોગિન)</a></li>
+          <li><a href="admin\login.php" target="_blank"><i class="fa-solid fa-lock"></i> Admin Portal (એડમિન લોગિન)</a></li>
         </ul>
       </div>
 

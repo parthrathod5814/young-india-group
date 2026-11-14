@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/inc/auth.php';
+require_login();
+
 require_once __DIR__ . '/inc/config.php';
 $pdo = db();
 
@@ -7,113 +10,22 @@ function escapeOutput($value): string
     return htmlspecialchars((string) ($value ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
-$perPage = 10;
-$currentPage = max(1, (int) ($_GET['page'] ?? 1));
-$search = trim((string) ($_GET['q'] ?? ''));
-
 $requests = [];
-$totalRecords = 0;
-$totalPages = 1;
 $loadError = false;
 
 try {
-    // Count matching records for the pagination controls.
-    if ($search !== '') {
-        $countStmt = $pdo->prepare(
-            'SELECT COUNT(*)
-             FROM blood_requests
-             WHERE patient LIKE :patient
-                OR blood_group LIKE :blood_group
-                OR patient_condition LIKE :patient_condition
-                OR hospital_address LIKE :hospital_address
-                OR ward LIKE :ward
-                OR contact LIKE :contact
-                OR runner LIKE :runner
-                OR status LIKE :status'
-        );
-
-        $like = '%' . $search . '%';
-        $countStmt->execute([
-            ':patient' => $like,
-            ':blood_group' => $like,
-            ':patient_condition' => $like,
-            ':hospital_address' => $like,
-            ':ward' => $like,
-            ':contact' => $like,
-            ':runner' => $like,
-            ':status' => $like,
-        ]);
-    } else {
-        $countStmt = $pdo->query('SELECT COUNT(*) FROM blood_requests');
-    }
-
-    $totalRecords = (int) $countStmt->fetchColumn();
-    $totalPages = max(1, (int) ceil($totalRecords / $perPage));
-    $currentPage = min($currentPage, $totalPages);
-    $offset = ($currentPage - 1) * $perPage;
-
-    // Fetch only the rows for the current page.
-    if ($search !== '') {
-        $stmt = $pdo->prepare(
-            'SELECT id, patient, blood_group, patient_condition, units,
-                    hospital_address, ward, contact, runner, status
-             FROM blood_requests
-             WHERE patient LIKE :patient
-                OR blood_group LIKE :blood_group
-                OR patient_condition LIKE :patient_condition
-                OR hospital_address LIKE :hospital_address
-                OR ward LIKE :ward
-                OR contact LIKE :contact
-                OR runner LIKE :runner
-                OR status LIKE :status
-             ORDER BY created_at DESC
-             LIMIT :limit OFFSET :offset'
-        );
-
-        $like = '%' . $search . '%';
-        $stmt->bindValue(':patient', $like, PDO::PARAM_STR);
-        $stmt->bindValue(':blood_group', $like, PDO::PARAM_STR);
-        $stmt->bindValue(':patient_condition', $like, PDO::PARAM_STR);
-        $stmt->bindValue(':hospital_address', $like, PDO::PARAM_STR);
-        $stmt->bindValue(':ward', $like, PDO::PARAM_STR);
-        $stmt->bindValue(':contact', $like, PDO::PARAM_STR);
-        $stmt->bindValue(':runner', $like, PDO::PARAM_STR);
-        $stmt->bindValue(':status', $like, PDO::PARAM_STR);
-        $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $stmt->execute();
-    } else {
-        $stmt = $pdo->prepare(
-            'SELECT id, patient, blood_group, patient_condition, units,
-                    hospital_address, ward, contact, runner, status
-             FROM blood_requests
-             ORDER BY created_at DESC
-             LIMIT :limit OFFSET :offset'
-        );
-
-        $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $stmt->execute();
-    }
+    $stmt = $pdo->query(
+        'SELECT patient, blood_group, patient_condition, units,
+                hospital_address, ward, contact, status
+         FROM blood_requests
+         ORDER BY created_at DESC'
+    );
 
     $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     error_log('Could not load blood requests: ' . $e->getMessage());
     $loadError = true;
 }
-
-$startRecord = $totalRecords > 0 ? $offset + 1 : 0;
-$endRecord = min($offset + $perPage, $totalRecords);
-
-$previousUrl = '?' . http_build_query([
-    'q' => $search,
-    'page' => max(1, $currentPage - 1),
-]);
-
-$nextUrl = '?' . http_build_query([
-    'q' => $search,
-    'page' => min($totalPages, $currentPage + 1),
-]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,7 +53,12 @@ $nextUrl = '?' . http_build_query([
             <div class="adm-toolbar">
               <label class="adm-search">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="search" id="bloodSearch" placeholder="Search blood requests...">
+                <input
+                  type="search"
+                  id="bloodSearch"
+                  placeholder="Search blood requests..."
+                  aria-label="Search blood requests"
+                >
               </label>
 
               <div class="adm-actions">
@@ -150,7 +67,6 @@ $nextUrl = '?' . http_build_query([
                 </a>
               </div>
             </div>
-            
 
             <?php if ($loadError): ?>
               <div class="adm-info" role="alert">
@@ -158,18 +74,14 @@ $nextUrl = '?' . http_build_query([
               </div>
             <?php else: ?>
               <div class="adm-info">
-                <?php if ($search !== ''): ?>
-                  <?= $totalRecords ?> matching request(s) found.
-                <?php else: ?>
-                  <?= $totalRecords ?> total request(s).
-                <?php endif; ?>
+                <span id="resultInfo"><?= count($requests) ?> blood request(s) found.</span>
               </div>
 
               <div class="adm-table-wrap">
                 <table class="adm-table">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>No.</th>
                       <th>Patient Name</th>
                       <th>Blood Group</th>
                       <th>Patient Condition</th>
@@ -181,19 +93,15 @@ $nextUrl = '?' . http_build_query([
                     </tr>
                   </thead>
 
-                  <tbody>
+                  <tbody id="bloodRows">
                     <?php if (!$requests): ?>
-                      <tr>
-                        <td colspan="10">
-                          <?= $search !== ''
-                            ? 'No matching blood requests found.'
-                            : 'No blood requests have been added yet.' ?>
-                        </td>
+                      <tr class="empty-row">
+                        <td colspan="9">No blood requests have been added yet.</td>
                       </tr>
                     <?php else: ?>
-                      <?php foreach ($requests as $request): ?>
-                        <tr>
-                          <td><?= escapeOutput($request['id']) ?></td>
+                      <?php foreach ($requests as $index => $request): ?>
+                        <tr class="blood-row">
+                          <td><?= $index + 1 ?></td>
                           <td><?= escapeOutput($request['patient']) ?></td>
                           <td><?= escapeOutput($request['blood_group']) ?></td>
                           <td><?= escapeOutput($request['patient_condition']) ?></td>
@@ -205,42 +113,30 @@ $nextUrl = '?' . http_build_query([
                         </tr>
                       <?php endforeach; ?>
                     <?php endif; ?>
+
+                    <tr id="noSearchResults" hidden>
+                      <td colspan="9">No matching blood requests.</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
 
               <div class="adm-info adm-info--bottom">
-                <span>
-                  Showing <?= $startRecord ?>–<?= $endRecord ?>
-                  of <?= $totalRecords ?> request(s)
-                </span>
+                <span id="pageInfo"></span>
 
                 <div class="adm-pager">
-                  <?php if ($currentPage > 1): ?>
-                    <a class="adm-btn adm-btn--sm" href="<?= escapeOutput($previousUrl) ?>">
-                      <i class="fa-solid fa-chevron-left"></i> Previous
-                    </a>
-                  <?php else: ?>
-                    <button class="adm-btn adm-btn--sm" type="button" disabled>
-                      <i class="fa-solid fa-chevron-left"></i> Previous
-                    </button>
-                  <?php endif; ?>
+                  <button type="button" class="adm-btn adm-btn--sm" id="previousPage">
+                    <i class="fa-solid fa-chevron-left"></i> Previous
+                  </button>
 
-                  <span>Page <?= $currentPage ?> of <?= $totalPages ?></span>
+                  <span id="pageNumber"></span>
 
-                  <?php if ($currentPage < $totalPages): ?>
-                    <a class="adm-btn adm-btn--sm" href="<?= escapeOutput($nextUrl) ?>">
-                      Next <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                  <?php else: ?>
-                    <button class="adm-btn adm-btn--sm" type="button" disabled>
-                      Next <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                  <?php endif; ?>
+                  <button type="button" class="adm-btn adm-btn--sm" id="nextPage">
+                    Next <i class="fa-solid fa-chevron-right"></i>
+                  </button>
                 </div>
               </div>
             <?php endif; ?>
-
           </div>
         </section>
       </div>
@@ -250,28 +146,96 @@ $nextUrl = '?' . http_build_query([
   <div class="adm-toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    // Keep the mobile sidebar menu usable without starting admin.js's demo table renderer.
-    const menuButton = document.getElementById('menuBtn');
-    const sidebar = document.getElementById('sidebar');
+    (() => {
+      const searchInput = document.getElementById('bloodSearch');
+      const allRows = Array.from(document.querySelectorAll('.blood-row'));
+      const noSearchResults = document.getElementById('noSearchResults');
+      const pageSize = 10;
+      let currentPage = 1;
+      let filteredRows = allRows;
 
-    if (menuButton && sidebar) {
-      menuButton.addEventListener('click', () => {
-        sidebar.classList.toggle('is-open');
-      });
-    }
+      function renderRows() {
+        const pageCount = Math.max(1, Math.ceil(filteredRows.length / pageSize));
+        currentPage = Math.min(currentPage, pageCount);
 
-    document.querySelectorAll('.adm-group__btn').forEach((button) => {
-      button.addEventListener('click', () => {
-        const group = button.closest('.adm-group');
-        if (!group) return;
-
-        const wasOpen = group.classList.contains('is-open');
-        document.querySelectorAll('.adm-group').forEach((item) => {
-          item.classList.remove('is-open');
+        allRows.forEach(row => {
+          row.hidden = true;
         });
-        group.classList.toggle('is-open', !wasOpen);
+
+        const start = (currentPage - 1) * pageSize;
+        const pageRows = filteredRows.slice(start, start + pageSize);
+
+        pageRows.forEach(row => {
+          row.hidden = false;
+        });
+
+        if (noSearchResults) {
+          noSearchResults.hidden = filteredRows.length !== 0 || allRows.length === 0;
+        }
+
+        const pageNumber = document.getElementById('pageNumber');
+        const pageInfo = document.getElementById('pageInfo');
+        const resultInfo = document.getElementById('resultInfo');
+        const previousButton = document.getElementById('previousPage');
+        const nextButton = document.getElementById('nextPage');
+
+        if (pageNumber) {
+          pageNumber.textContent = `Page ${currentPage} of ${pageCount}`;
+        }
+
+        if (pageInfo) {
+          const first = filteredRows.length === 0 ? 0 : start + 1;
+          const last = start + pageRows.length;
+          pageInfo.textContent =
+            `Showing ${first}–${last} of ${filteredRows.length} request(s)`;
+        }
+
+        if (resultInfo) {
+          resultInfo.textContent = `${filteredRows.length} blood request(s) found.`;
+        }
+
+        if (previousButton) {
+          previousButton.disabled = currentPage <= 1;
+        }
+
+        if (nextButton) {
+          nextButton.disabled = currentPage >= pageCount;
+        }
+      }
+
+      searchInput?.addEventListener('input', () => {
+        const query = searchInput.value.trim().toLowerCase();
+
+        filteredRows = allRows.filter(row =>
+          row.textContent.toLowerCase().includes(query)
+        );
+
+        currentPage = 1;
+        renderRows();
       });
-    });
+
+      document.getElementById('previousPage')?.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderRows();
+        }
+      });
+
+      document.getElementById('nextPage')?.addEventListener('click', () => {
+        if (currentPage < Math.ceil(filteredRows.length / pageSize)) {
+          currentPage++;
+          renderRows();
+        }
+      });
+
+     
+
+      renderRows();
+    })();
   </script>
+
+  <script src="admin.js"></script>
+
+  
 </body>
 </html>
