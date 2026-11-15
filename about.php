@@ -57,7 +57,7 @@
           <img src="assets/logo.png" alt="Young India Group logo">
           <small>સ્થાપના ૨૦૦૭ • મોરબી</small>
           <h3>યંગ ઇન્ડિયા ગ્રુપ</h3>
-          <p>દેવેન રબારી ફાઉન્ડેશન (રજી. પબ્લિક ટ્રસ્ટ E/1428/Morbi)</p>
+          <p>ધ દેવેન રબારી ફાઉન્ડેશન (રજી. પબ્લિક ટ્રસ્ટ E/1428/Morbi)</p>
           <div class="about-id-card__stats">
             <div><strong><span data-count="79" class="about-here-count">79</span>+</strong><span>સેવા પ્રકલ્પો</span></div>
             <div><strong><span data-count="18450" class="about-here-count">18,450</span>+</strong><span>રક્તદાતા નેટવર્ક</span></div>
@@ -230,8 +230,7 @@
             <p>મોરબી અને સૌરાષ્ટ્રના છેવાડાના માનવી સુધી પહોંચવા માટે રક્તદાન, શિક્ષણ સહાય કે આપત્તિ નિવારણમાં તમારી સેવા અર્પણ કરો.</p>
           </div>
           <div class="about-cta__actions">
-            <a href="index.html#contact" class="btn btn--orange"><i class="fa-solid fa-hand-holding-heart"></i> દાન સહયોગ (80G કરમુક્ત)</a>
-            <a href="index.html#contact" class="btn about-btn--white"><i class="fa-solid fa-user-plus"></i> સ્વયંસેવક જોડાઓ</a>
+            <a href="volunteers.php" class="btn about-btn--white"><i class="fa-solid fa-user-plus"></i> સ્વયંસેવક જોડાઓ</a>
           </div>
         </div>
       </div>

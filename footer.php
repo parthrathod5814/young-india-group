@@ -7,7 +7,7 @@
         <div class="footer__logo-row">
           <img src="assets/logo.png" alt="Young India Group logo">
           <div>
-            <strong>યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન</strong>
+            <strong>યંગ ઇન્ડિયા ગ્રુપ - ધ દેવેન રબારી ફાઉન્ડેશન</strong>
             <small>YOUNG INDIA GROUP • MORBI, GUJARAT</small>
           </div>
         </div>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="container footer__bottom">
-      <p>© 2024 યંગ ઇન્ડિયા ગ્રુપ - દેવેન રબારી ફાઉન્ડેશન (Young India Group). Registered Public Charitable Trust No: E/1428/Morbi. All Rights Reserved. 24/7 Helpline: +91 98250 00000</p>
-      <p class="footer__motto">SPEAK (બોલો) &nbsp;•&nbsp; ACT (કરો) &nbsp;•&nbsp; CHANGE (બદલો)</p>
+      <p>© 2024 યંગ ઇન્ડિયા ગ્રુપ - ધ દેવેન રબારી ફાઉન્ડેશન (Young India Group). Registered Public Charitable Trust No: E/1428/Morbi. All Rights Reserved. 24/7 Helpline: +91 98250 00000</p>
+      <p class="footer__motto">Developed by - <a href="https://pixoradigital.in" target="_blank">Pixora Digital Morbi</a></p>
     </div>
   </footer>

@@ -439,6 +439,7 @@ h1, h2, h3 { font-family: var(--font-heading); color: var(--purple-900); line-he
 .form h3 { font-size: 20px; margin-bottom: 12px; }
 .form label { display: block; margin: 10px 0 4px; font-size: 15px; font-weight: 600; color: var(--purple-900); }
 .form input, .form select { width: 100%; padding: 11px 12px; font: inherit; font-size: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 6px; }
+.form input, .form textarea { width: 100%; padding: 11px 12px; font: inherit; font-size: 12px; background: var(--white); border: 1px solid var(--border); border-radius: 6px; }
 .form input:focus, .form select:focus { border-color: var(--purple-600); outline: none; }
 .form input.has-error { border-color: var(--red); }
 .form .btn { margin-top: 18px; }

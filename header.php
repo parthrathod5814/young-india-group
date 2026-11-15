@@ -26,7 +26,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
       <a href="index.html" class="brand">
         <img src="assets/logo.png" alt="Young India Group logo" class="brand__logo">
         <span class="brand__text">
-          <strong>Young India Group – Deven Rabari Foundation</strong>
+          <strong>Young India Group – The Deven Rabari Foundation</strong>
           <small lang="gu">દેવેન રબારી ફાઉન્ડેશન (મોરબી) &nbsp; SPEAK • ACT • CHANGE</small>
         </span>
       </a>
