@@ -14,7 +14,8 @@
 
   <script>document.documentElement.classList.add("js");</script>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  
 </head>
 <body>
 
@@ -376,6 +377,6 @@
 
   <?php include("footer.php"); ?>
 
-  <script src="script.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
