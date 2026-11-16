@@ -56,7 +56,7 @@ $showAdminControls = $sidebarRole === 'Super Admin';
 ?>
 
 <!-- ===== SIDEBAR ===== -->
-<aside class="adm-side">
+<aside class="adm-side" id="sidebar">
   <p class="adm-side__label">OPERATIONS CORE</p>
 
   <a class="adm-link" href="index.php">

@@ -381,8 +381,17 @@ function initSidebar() {
   });
 
   // Phone / tablet: open and close the sidebar
-  $("#menuBtn")?.addEventListener("click", () => $("#sidebar").classList.toggle("is-open"));
-  $$("#sidebar a").forEach((a) => a.addEventListener("click", () => $("#sidebar").classList.remove("is-open")));
+ const sidebar = document.querySelector(".adm-side");
+
+document.querySelector("#menuBtn")?.addEventListener("click", () => {
+  sidebar?.classList.toggle("is-open");
+});
+
+sidebar?.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    sidebar.classList.remove("is-open");
+  });
+});
 }
 
 function initHeader() {
