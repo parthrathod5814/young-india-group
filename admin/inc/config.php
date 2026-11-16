@@ -5,9 +5,9 @@
    ========================================================= */
 
 define('DB_HOST', getenv('YIG_DB_HOST') ?: 'localhost');
-define('DB_NAME', getenv('YIG_DB_NAME') ?: 'young_india_group');
-define('DB_USER', getenv('YIG_DB_USER') ?: 'root');
-define('DB_PASS', getenv('YIG_DB_PASS') ?: '');
+define('DB_NAME', getenv('YIG_DB_NAME') ?: 'u903655862_youngindiagrp');
+define('DB_USER', getenv('YIG_DB_USER') ?: 'u903655862_youngindiagrp');
+define('DB_PASS', getenv('YIG_DB_PASS') ?: 'u903655862_Yig@2007');
 
 function db(): PDO
 {
