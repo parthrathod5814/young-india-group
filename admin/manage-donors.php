@@ -304,7 +304,8 @@ try {
                               <i class="fa-solid fa-pen"></i> Update
                             </button>
 
-                            <form method="post" class="delete-donor-form">
+                            <form method="post" class="delete-donor-form" 
+                            data-confirm="Are you sure you want to delete this donor?">
                               <input
                                 type="hidden"
                                 name="csrf_token"

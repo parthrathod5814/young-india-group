@@ -507,7 +507,7 @@ try {
                               data-status="<?= manageAdminEscape($admin['status']) ?>"
                             ><i class="fa-solid fa-pen"></i> Update</button>
 
-                            <form method="post" class="delete-admin-form">
+                            <form method="post" class="delete-admin-form" data-confirm="Are you sure you want to delete this admin?">
                               <input type="hidden" name="csrf_token" value="<?= manageAdminEscape($_SESSION['manage_admin_csrf_token']) ?>">
                               <input type="hidden" name="action" value="delete">
                               <input type="hidden" name="id" value="<?= (int) $admin['id'] ?>">
@@ -730,14 +730,6 @@ try {
           addModal.hidden = true;
           editModal.hidden = true;
         }
-      });
-
-      document.querySelectorAll('.delete-admin-form').forEach(form => {
-        form.addEventListener('submit', event => {
-          if (!confirm('Are you sure you want to delete this admin?')) {
-            event.preventDefault();
-          }
-        });
       });
 
       const toast = document.getElementById('toast');

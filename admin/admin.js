@@ -75,17 +75,68 @@ function openModal(id, title, icon) {
 }
 
 // "Are you sure?" popup  (needs #modal-confirm)
-function confirmDialog({ title, icon = "fa-triangle-exclamation", danger = true, message, confirmText = "Yes", onConfirm }) {
-  const modal = openModal("modal-confirm", title, icon);
-  if (!modal) { if (window.confirm(message)) onConfirm(); return; }      // no popup on this page: use the browser box
+function ensureConfirmModal() {
+  let modal = document.getElementById("modal-confirm");
 
-  $("h3", modal).classList.toggle("is-danger", danger);
-  slot(modal, "message").textContent = message;
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.className = "adm-modal";
+    modal.id = "modal-confirm";
+    modal.hidden = true;
 
-  const button = slot(modal, "confirm");
+    modal.innerHTML = `
+      <div class="adm-modal__box" role="dialog" aria-modal="true">
+        <div class="adm-modal__head">
+          <h3>
+            <i class="fa-solid fa-triangle-exclamation" data-slot="icon"></i>
+            <span data-slot="title">Confirm</span>
+          </h3>
+          <button type="button" class="adm-x" data-close aria-label="Close">&times;</button>
+        </div>
+        <div class="adm-modal__body">
+          <p data-slot="message"></p>
+        </div>
+        <div class="adm-modal__foot">
+          <button type="button" class="adm-btn" data-close>Cancel</button>
+          <button type="button" class="adm-btn adm-btn--danger" data-slot="confirm">Yes</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+  }
+
+  return modal;
+}
+
+function confirmDialog({
+  title,
+  icon = "fa-triangle-exclamation",
+  danger = true,
+  message,
+  confirmText = "Yes",
+  onConfirm
+}) {
+  const modal = ensureConfirmModal();
+
+  closeModal();
+
+  modal.querySelector('[data-slot="title"]').textContent = title || "Confirm";
+  modal.querySelector('[data-slot="icon"]').className = "fa-solid " + icon;
+  modal.querySelector('[data-slot="message"]').textContent = message;
+
+  const button = modal.querySelector('[data-slot="confirm"]');
   button.innerHTML = confirmText;
-  button.className = "adm-btn " + (danger ? "adm-btn--danger" : "adm-btn--primary");
-  button.onclick = async () => { closeModal(); await onConfirm(); };
+  button.className = "adm-btn " + (
+    danger ? "adm-btn--danger" : "adm-btn--primary"
+  );
+
+  button.onclick = async () => {
+    closeModal();
+    await onConfirm?.();
+  };
+
+  modal.hidden = false;
 }
 
 // Success popup with one or two buttons  (needs #modal-message)
@@ -335,6 +386,59 @@ function initSidebar() {
 }
 
 function initHeader() {
+
+
+  const notificationModal = $("#modal-notifications");
+const deleteAll = notificationModal && slot(notificationModal, "deleteall");
+
+deleteAll?.addEventListener("click", () => {
+  confirmDialog({
+    title: "Delete All Notifications",
+    icon: "fa-trash",
+    danger: true,
+    message: "Delete all notifications? This cannot be undone.",
+    confirmText: "Delete All",
+    onConfirm: async () => {
+      try {
+        const response = await fetch(window.location.href, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            "X-Requested-With": "XMLHttpRequest"
+          },
+          body: new URLSearchParams({
+            header_action: "delete_all_notifications",
+            csrf_token: deleteAll.dataset.csrf || ""
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.message || "Unable to delete notifications.");
+        }
+
+        const list = slot(notificationModal, "list");
+        if (list) list.innerHTML = "<p>No notifications.</p>";
+
+        const badge = $("#bellCount");
+        if (badge) {
+          badge.textContent = "0";
+          badge.hidden = true;
+        }
+
+        const markAll = slot(notificationModal, "markall");
+        if (markAll) markAll.disabled = true;
+        deleteAll.disabled = true;
+
+        closeModal();
+        toast(result.message);
+      } catch (error) {
+        toast(error.message || "Unable to delete notifications.", "error");
+      }
+    }
+  });
+});
   // Bell: opens the notifications popup. PHP prints the list inside it.
   $("#bellBtn")?.addEventListener("click", () => openModal("modal-notifications"));
 

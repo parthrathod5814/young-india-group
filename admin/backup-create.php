@@ -610,7 +610,8 @@ $lastBackup = $backups[0]['created_at'] ?? 'never';
                          href="backup-create.php?download=<?= rawurlencode($backup['file']) ?>">
                         <i class="fa-solid fa-download"></i> Download
                       </a>
-                      <form method="post" class="delete-backup-form">
+                      <form method="post" class="delete-backup-form"
+                      data-confirm="Are you sure you want to delete this backup?">
                         <input type="hidden" name="csrf_token" value="<?= backupEscape($_SESSION['backup_csrf_token']) ?>">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="file" value="<?= backupEscape($backup['file']) ?>">
@@ -648,11 +649,6 @@ $lastBackup = $backups[0]['created_at'] ?? 'never';
     checkbox.form?.requestSubmit();
   });
 
-  document.querySelectorAll('.delete-backup-form').forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!confirm('Delete this backup permanently?')) event.preventDefault();
-    });
-  });
 
   const toast = document.getElementById('toast');
   if (toast?.dataset.message) {

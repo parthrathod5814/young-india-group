@@ -275,7 +275,8 @@ try {
                               <i class="fa-solid fa-pen"></i> Update
                             </button>
 
-                            <form method="post" class="delete-volunteer-form">
+                            <form method="post" class="delete-volunteer-form"
+                            data-confirm="Are you sure you want to delete this volunteer?">
                               <input
                                 type="hidden"
                                 name="csrf_token"
@@ -553,14 +554,6 @@ try {
 
       document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && modal) modal.hidden = true;
-      });
-
-      document.querySelectorAll('.delete-volunteer-form').forEach(form => {
-        form.addEventListener('submit', event => {
-          if (!window.confirm('Are you sure you want to delete this volunteer?')) {
-            event.preventDefault();
-          }
-        });
       });
 
       const toast = document.getElementById('toast');

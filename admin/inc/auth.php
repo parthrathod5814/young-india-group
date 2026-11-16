@@ -217,3 +217,53 @@ function is_locked_out(string $email): bool
 
     return (int) $row['same_user'] >= MAX_FAILS || (int) $row['same_ip'] >= MAX_FAILS * 4;
 }
+
+
+// Ensure this token is initialized before the header renders its button.
+if (empty($_SESSION['notification_csrf_token'])) {
+    $_SESSION['notification_csrf_token'] = bin2hex(random_bytes(32));
+}
+
+if (
+    $_SERVER['REQUEST_METHOD'] === 'POST'
+    && ($_POST['header_action'] ?? '') === 'delete_all_notifications'
+) {
+    header('Content-Type: application/json; charset=utf-8');
+
+    $admin = current_admin() ?? [];
+    $adminId = (int) ($admin['id'] ?? 0);
+
+    $submittedToken = (string) ($_POST['csrf_token'] ?? '');
+    $sessionToken = (string) $_SESSION['notification_csrf_token'];
+
+    if ($adminId < 1) {
+        http_response_code(401);
+        echo json_encode(['ok' => false, 'message' => 'Not authenticated.']);
+        exit;
+    }
+
+    if (!hash_equals($sessionToken, $submittedToken)) {
+        http_response_code(403);
+        echo json_encode(['ok' => false, 'message' => 'Invalid security token.']);
+        exit;
+    }
+
+    try {
+        db()->exec('DELETE FROM notifications');
+
+        // Keep notification_reads unchanged; it stores read history.
+        echo json_encode([
+            'ok' => true,
+            'message' => 'All notifications deleted.',
+        ]);
+    } catch (Throwable $e) {
+        error_log('Unable to delete notifications: ' . $e->getMessage());
+        http_response_code(500);
+        echo json_encode([
+            'ok' => false,
+            'message' => 'Database deletion failed.',
+        ]);
+    }
+
+    exit;
+}

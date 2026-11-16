@@ -253,7 +253,8 @@ try {
                               <i class="fa-solid fa-pen"></i> Update
                             </button>
 
-                            <form method="post" class="delete-inquiry-form">
+                            <form method="post" class="delete-inquiry-form" 
+                            data-confirm="Are you sure you want to delete this inquiry?">
                               <input
                                 type="hidden"
                                 name="csrf_token"
@@ -413,6 +414,8 @@ try {
     data-type="<?= inquiryManageEscape($toastType) ?>"
   ></div>
 
+
+  <script src="admin.js"></script>
   <script>
     (() => {
       const searchInput = document.getElementById('inquirySearch');
@@ -518,13 +521,6 @@ try {
         if (event.key === 'Escape' && modal) modal.hidden = true;
       });
 
-      document.querySelectorAll('.delete-inquiry-form').forEach(form => {
-        form.addEventListener('submit', event => {
-          if (!window.confirm('Are you sure you want to delete this inquiry?')) {
-            event.preventDefault();
-          }
-        });
-      });
 
       const toast = document.getElementById('toast');
       if (toast?.dataset.message) {
@@ -539,26 +535,8 @@ try {
           toast.classList.remove('is-show', 'is-error');
         }, 5000);
       }
-
-      // Sidebar behavior for this PHP page.
-      const menuButton = document.getElementById('menuBtn');
-      const sidebar = document.getElementById('sidebar');
-
-      if (menuButton && sidebar) {
-        menuButton.addEventListener('click', () => {
-          sidebar.classList.toggle('is-open');
-        });
-      }
-
-      document.querySelectorAll('.adm-group__btn').forEach(button => {
-        button.addEventListener('click', () => {
-          const group = button.closest('.adm-group');
-          if (group) group.classList.toggle('is-open');
-        });
-      });
-
-      renderRows();
     })();
+
   </script>
 </body>
 </html>

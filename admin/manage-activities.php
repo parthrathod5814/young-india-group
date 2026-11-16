@@ -831,7 +831,8 @@ $csrfToken = (string) $_SESSION['activity_manage_csrf_token'];
                               <i class="fa-solid fa-pen"></i> Update
                             </button>
 
-                            <form method="post" class="delete-activity-form">
+                            <form method="post" class="delete-activity-form"
+                            data-confirm="Are you sure you want to delete this activity?">
                               <input type="hidden" name="csrf_token" value="<?= activityManageEscape($csrfToken) ?>">
                               <input type="hidden" name="action" value="delete">
                               <input type="hidden" name="id" value="<?= (int) $activity['id'] ?>">
@@ -1342,13 +1343,6 @@ $csrfToken = (string) $_SESSION['activity_manage_csrf_token'];
         if (event.key === 'Escape' && modal) modal.hidden = true;
       });
 
-      document.querySelectorAll('.delete-activity-form').forEach(deleteForm => {
-        deleteForm.addEventListener('submit', event => {
-          if (!window.confirm('Delete this activity, all its translations, and its uploaded images?')) {
-            event.preventDefault();
-          }
-        });
-      });
 
       const toast = document.getElementById('toast');
       if (toast?.dataset.message) {
