@@ -116,7 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <hr class="login-rule">
 
         <h2><i class="fa-solid fa-user-shield"></i> Administrative Portal &amp; Management Gateway</h2>
-        <p>Centralized governance panel for program coordination, foundation initiatives, trustee verification, and community impact management.</p>
       </div>
 
       <div class="login-brand__foot">

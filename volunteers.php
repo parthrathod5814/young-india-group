@@ -430,9 +430,9 @@ $csrfToken = (string) $_SESSION['volunteer_form_csrf_token'];
             <span class="volunteer-badge volunteer-badge--green">૨૪/૭ કાર્યરત</span>
           </div>
 
-          <a href="tel:+919825000000" class="volunteer-contact volunteer-contact--sos">
+          <a href="tel:+919137891378" class="volunteer-contact volunteer-contact--sos">
             <i class="fa-solid fa-asterisk"></i>
-            <div><small>Blood SOS Dispatch</small><strong>+91 98250 00000</strong></div>
+            <div><small>Blood SOS Dispatch</small><strong>+91 9137891378</strong></div>
             <i class="fa-solid fa-phone"></i>
           </a>
 
@@ -442,9 +442,9 @@ $csrfToken = (string) $_SESSION['volunteer_form_csrf_token'];
             <i class="fa-solid fa-phone"></i>
           </a>
 
-          <a href="mailto:info@youngindiagroup.org" class="volunteer-contact">
+          <a href="mailto:thedevenrabarifoundation@gmail.com" class="volunteer-contact">
             <i class="fa-regular fa-envelope"></i>
-            <div><small>Official Email</small><strong>info@youngindiagroup.org</strong></div>
+            <div><small>Official Email</small><strong>thedevenrabarifoundation@gmail.com</strong></div>
             <i class="fa-solid fa-arrow-right"></i>
           </a>
 

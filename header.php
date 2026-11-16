@@ -9,7 +9,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
   <div class="topbar">
     <div class="topbar__inner">
       <div class="topbar__left">
-        <span><i class="fa-solid fa-phone"></i>Morbi 24/7 Helpline: <strong>+91 98250 00000</strong></span>
+        <span><i class="fa-solid fa-phone"></i>Morbi 24/7 Helpline: <strong>+91 91378 91378</strong></span>
         <span><i class="fa-solid fa-headset"></i>Morbi Civil Live Desk: <strong>1800-MORBI-HELP</strong></span>
         <span><i class="fa-solid fa-shield-halved"></i>Regd Public Trust: E/1428/Morbi</span>
       </div>

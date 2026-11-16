@@ -601,11 +601,11 @@ $homeCsrfToken = (string) $_SESSION['home_inquiry_csrf_token'];
           <div class="hq__boxes">
             <div class="hq__box">
               <span class="hq__icon"><i class="fa-solid fa-location-dot"></i></span>
-              <p><strong>Morbi Central Secretariat</strong><br>Opp. Civil Hospital Road, Near Shanala Gate, Morbi – 363641, Gujarat</p>
+              <p><strong>Morbi Central Secretariat</strong><br>702 Platinum Heights, Somanath Soc. RVP Road, Morbi MDG, Morbi, Gujarat - 363641</p>
             </div>
             <div class="hq__box">
               <span class="hq__icon"><i class="fa-solid fa-phone-volume"></i></span>
-              <p><strong>WhatsApp Helpline &amp; Dispatch</strong><br>+91 98250 00000 / +91 2822 220000<br>24 Hours Active Dispatch Desk</p>
+              <p><strong>WhatsApp Helpline &amp; Dispatch</strong><br>+91 9137891378<br>24 Hours Active Dispatch Desk</p>
             </div>
           </div>
         </div>
