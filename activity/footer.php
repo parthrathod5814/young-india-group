@@ -37,7 +37,7 @@
         <h4>STATUTORY TRUST &amp; SECRETARIAT (મોરબી સચિવાલય)</h4>
         <ul class="footer__contact">
           <li><strong>Morbi Secretariat:</strong> Opp. Civil Hospital Road, Near Shanala Gate, Shanala Road, Morbi - 363641, Gujarat</li>
-          <li><strong>Regd. Public Charitable Trust:</strong> E/1428/Morbi • Gujarat Public Trusts Act • 80G Tax Exemption Registered</li>
+          <li><strong>Regd. Public Charitable Trust:</strong> U88900GJ2026NPL181119 • Gujarat Public Trusts Act • 80G Tax Exemption Registered</li>
           <li>24/7 Citizen Helpline: <strong>+91 9137891378</strong></li>
         </ul>
       </div>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="container footer__bottom">
-      <p>© 2024 યંગ ઇન્ડિયા ગ્રુપ - ધ દેવેન રબારી ફાઉન્ડેશન (Young India Group). Registered Public Charitable Trust No: E/1428/Morbi. All Rights Reserved. 24/7 Helpline: +91 9137891378</p>
+      <p>© 2024 યંગ ઇન્ડિયા ગ્રુપ - ધ દેવેન રબારી ફાઉન્ડેશન (Young India Group). Registered Public Charitable Trust No: U88900GJ2026NPL181119. All Rights Reserved. 24/7 Helpline: +91 9137891378</p>
       <p class="footer__motto">Developed by - <a href="https://pixoradigital.in" target="_blank">Pixora Digital Morbi</a></p>
     </div>
   </footer>

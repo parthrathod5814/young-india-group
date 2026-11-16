@@ -11,7 +11,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
       <div class="topbar__left">
         <span><i class="fa-solid fa-phone"></i>Morbi 24/7 Helpline: <strong>+91 91378 91378</strong></span>
         <span><i class="fa-solid fa-headset"></i>Morbi Civil Live Desk: <strong>1800-MORBI-HELP</strong></span>
-        <span><i class="fa-solid fa-shield-halved"></i>Regd Public Trust: E/1428/Morbi</span>
+        <span><i class="fa-solid fa-shield-halved"></i>Regd Public Trust: U88900GJ2026NPL181119</span>
       </div>
       <div class="topbar__right">
         <span class="live-dot">Live Emergency Desk</span>

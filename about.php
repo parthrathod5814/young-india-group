@@ -57,7 +57,7 @@
           <img src="assets/logo.png" alt="Young India Group logo">
           <small>સ્થાપના ૨૦૦૭ • મોરબી</small>
           <h3>યંગ ઇન્ડિયા ગ્રુપ</h3>
-          <p>ધ દેવેન રબારી ફાઉન્ડેશન (રજી. પબ્લિક ટ્રસ્ટ E/1428/Morbi)</p>
+          <p>ધ દેવેન રબારી ફાઉન્ડેશન (રજી. પબ્લિક ટ્રસ્ટ U88900GJ2026NPL181119)</p>
           <div class="about-id-card__stats">
             <div><strong><span data-count="79" class="about-here-count">79</span>+</strong><span>સેવા પ્રકલ્પો</span></div>
             <div><strong><span data-count="18450" class="about-here-count">18,450</span>+</strong><span>રક્તદાતા નેટવર્ક</span></div>
@@ -201,7 +201,7 @@
             <article class="about-cert">
               <div class="about-cert__top"><i class="fa-solid fa-scale-balanced"></i><span class="tag tag--medical">સક્રિય પબ્લિક ટ્રસ્ટ</span></div>
               <h3>ચેરિટી કમિશ્નર નોંધણી</h3>
-              <p>નોંધણી ક્રમાંક: <strong>E/1428/Morbi</strong> (Bombay Public Trusts Act હેઠળ ચેરિટી કમિશ્નર નોંધાયેલ).</p>
+              <p>નોંધણી ક્રમાંક: <strong>U88900GJ2026NPL181119</strong> (Bombay Public Trusts Act હેઠળ ચેરિટી કમિશ્નર નોંધાયેલ).</p>
             </article>
 
             <article class="about-cert">

@@ -283,7 +283,7 @@ $homeCsrfToken = (string) $_SESSION['home_inquiry_csrf_token'];
         <ul class="hero__trust">
           <li><i class="fa-solid fa-circle-check"></i>100% Free Public Relief</li>
           <li><i class="fa-solid fa-stopwatch"></i>&lt;15 Mins Match Response</li>
-          <li><i class="fa-solid fa-shield-halved"></i>Govt. Regd No. E/1428/Morbi</li>
+          <li><i class="fa-solid fa-shield-halved"></i>Govt. Regd No. U88900GJ2026NPL181119</li>
         </ul>
       </div>
 
@@ -593,7 +593,7 @@ $homeCsrfToken = (string) $_SESSION['home_inquiry_csrf_token'];
           <h2>Young India Group Central Headquarters &amp; Operations Desk</h2>
 
           <p>
-            Registered Public Charitable Trust No: <strong>E/1428/Morbi</strong>. Fully
+            Registered Public Charitable Trust No: <strong>U88900GJ2026NPL181119</strong>. Fully
             compliant with Gujarat Public Trusts Act, Section 12A, and 80G tax
             exemptions for all donor contributions.
           </p>
