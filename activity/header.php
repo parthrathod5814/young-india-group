@@ -19,6 +19,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     </div>
   </div>
 
+
   <!-- ===== HEADER / NAVIGATION ===== -->
   <header class="header" id="header">
     <div class="header__inner">
@@ -75,6 +76,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     Donate Now
   </a>
 </nav>
+
+
 
     </div>
   </header>

@@ -307,17 +307,15 @@ try {
         exit('Activity not found.');
     }
 
-    $translationStmt = $pdo->prepare(
-        "SELECT
-            language,
-            title,
-            short_description,
-            context_background,
-            description,
-            image_caption
-         FROM activity_translations
-         WHERE activity_id = :activity_id"
-    );
+      $translationStmt = $pdo->prepare(
+          "SELECT
+              language,
+              title,
+              short_description,
+              description
+          FROM activity_translations
+          WHERE activity_id = :activity_id"
+      );
     $translationStmt->execute([':activity_id' => $activityId]);
 
     $translations = [];
@@ -387,10 +385,8 @@ if ($title === '') {
     $title = (string) $activity['title'];
 }
 
-$contextHtml = detailTranslationValue($translation, 'context_background');
 $descriptionHtml = detailTranslationValue($translation, 'description');
 $summary = detailTranslationValue($translation, 'short_description');
-$imageCaption = detailTranslationValue($translation, 'image_caption');
 
 $coverImage = detailAssetUrl(
     (string) ($activity['featured_image'] ?? '')
@@ -414,7 +410,6 @@ $labelText = [
         'official' => 'સત્તાવાર યાદી / સક્રિય અહેવાલ',
         'read_time' => 'વાંચન સમય',
         'minutes' => 'મિનિટ',
-        'context' => 'પૃષ્ઠભૂમિ અને સંદર્ભ',
         'description' => 'વિગતવાર વર્ણન અને સમગ્ર અહેવાલ',
         'gallery' => 'ફોટો ગેલેરી',
         'click_photo' => 'ક્લિક કરીને તસવીર જુઓ',
@@ -424,7 +419,6 @@ $labelText = [
         'all_reports' => 'તમામ અહેવાલો જુઓ',
         'read_report' => 'અહેવાલ વાંચો',
         'no_related' => 'હાલમાં અન્ય અહેવાલો ઉપલબ્ધ નથી.',
-        'no_context' => 'આ અહેવાલ માટે પૃષ્ઠભૂમિ અને સંદર્ભ ઉપલબ્ધ નથી.',
         'no_description' => 'આ અહેવાલનું વિગતવાર વર્ણન ઉપલબ્ધ નથી.',
         'photo' => 'તસવીર',
         'byline' => 'યંગ ઇન્ડિયા ગ્રુપ મીડિયા ડેસ્ક',
@@ -439,7 +433,6 @@ $labelText = [
         'official' => 'Official report',
         'read_time' => 'Read time',
         'minutes' => 'min',
-        'context' => 'Context & Background',
         'description' => 'Detailed Description & Event Overview',
         'gallery' => 'Event Gallery',
         'click_photo' => 'Click a photo to view',
@@ -449,7 +442,6 @@ $labelText = [
         'all_reports' => 'View all reports',
         'read_report' => 'Read report',
         'no_related' => 'No other reports are available yet.',
-        'no_context' => 'Context and background are not available for this report.',
         'no_description' => 'A detailed description is not available for this report.',
         'photo' => 'Photo',
         'byline' => 'Young India Group Media Desk',
@@ -485,10 +477,6 @@ $labelText = [
 ];
 
 $labels = $labelText[$activeLanguage] ?? $labelText['gu'];
-
-$contextContent = $contextHtml !== ''
-    ? detailSafeHtml($contextHtml)
-    : '<p>' . detailEscape($labels['no_context']) . '</p>';
 
 $descriptionContent = $descriptionHtml !== ''
     ? detailSafeHtml($descriptionHtml)
@@ -635,99 +623,99 @@ if ($pageDescription === '') {
   </header>
 
   <!-- ===== COVER PICTURE ===== -->
-  <section class="container">
-    <figure class="actd-cover">
-      <img src="<?= detailEscape($coverImage) ?>" alt="<?= detailEscape($title) ?>">
-      <figcaption>
-        <?php if ($imageCaption !== ''): ?>
-          <small><?= detailEscape($imageCaption) ?></small>
-        <?php endif; ?>
-        <strong><?= detailEscape($title) ?></strong>
-      </figcaption>
-      <span class="actd-cover__credit"><?= detailEscape(detailCategoryLabel((string) $activity['category'], $activeLanguage)) ?></span>
-    </figure>
+<!-- ===== COVER PICTURE ===== -->
+<section class="container">
+  <figure class="actd-cover">
+    <img src="<?= detailEscape($coverImage) ?>" alt="<?= detailEscape($title) ?>">
+  </figure>
+</section>
+
+<!-- ===== ACTIVITY DESCRIPTION ===== -->
+<div class="container actd-article">
+  <section class="actd-card">
+    <div class="actd-card__head">
+      <h2>
+        <i class="fa-solid fa-file-lines"></i>
+        <?= detailEscape($labels['description']) ?>
+      </h2>
+      <span class="actd-tag">01</span>
+    </div>
+
+    <div class="actd-prose" lang="<?= detailEscape($activeLanguage) ?>">
+      <?= $descriptionContent ?>
+    </div>
   </section>
-
-  <!-- ===== ARTICLE SECTIONS ===== -->
-  <div class="container actd-article">
-
-    <section class="actd-card">
-      <div class="actd-card__head">
-        <h2><i class="fa-solid fa-book-open"></i> <?= detailEscape($labels['context']) ?></h2>
-        <span class="actd-tag">01</span>
-      </div>
-      <div class="actd-prose" lang="<?= detailEscape($activeLanguage) ?>">
-        <?= $contextContent ?>
-      </div>
-    </section>
-
-    <section class="actd-card">
-      <div class="actd-card__head">
-        <h2><i class="fa-solid fa-file-lines"></i> <?= detailEscape($labels['description']) ?></h2>
-        <span class="actd-tag">02</span>
-      </div>
-      <div class="actd-prose" lang="<?= detailEscape($activeLanguage) ?>">
-        <?= $descriptionContent ?>
-      </div>
-    </section>
+</div>
 
   </div>
 
   <!-- ===== PHOTO GALLERY ===== -->
-  <?php if ($galleryImages): ?>
-    <section class="container">
-      <div
-        class="actd-card actd-gallery"
-        id="actdGallery"
-        data-photo-label="<?= detailEscape($labels['photo']) ?>"
-      >
-        <div class="actd-card__head">
-          <h2><i class="fa-regular fa-images"></i> <?= detailEscape($labels['gallery']) ?></h2>
-          <div class="actd-gallery__tools"></div>
-        </div>
-
-        <div class="actd-stage" id="actdStage" tabindex="0" aria-roledescription="carousel">
-          <img
-            id="actdMain"
-            src="<?= detailEscape(detailAssetUrl((string) $galleryImages[0])) ?>"
-            alt="<?= detailEscape($imageCaption !== '' ? $imageCaption : $title) ?>"
-          >
-          <?php if (count($galleryImages) > 1): ?>
-            <button type="button" class="actd-arrow actd-arrow--prev" id="actdPrev" aria-label="Previous">
-              <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <button type="button" class="actd-arrow actd-arrow--next" id="actdNext" aria-label="Next">
-              <i class="fa-solid fa-chevron-right"></i>
-            </button>
-          <?php endif; ?>
-          <div class="actd-stage__caption">
-            <small id="actdCapLabel"></small>
-            <strong id="actdCaption"><?= detailEscape($imageCaption) ?></strong>
-          </div>
-        </div>
-
-        <div class="actd-thumbs-meta">
-          <span><i class="fa-regular fa-hand-pointer"></i> <?= detailEscape($labels['click_photo']) ?></span>
-          <strong><?= count($galleryImages) ?> <?= detailEscape($labels['photos_total']) ?></strong>
-        </div>
-
-        <div class="actd-thumbs" id="actdThumbs">
-          <?php foreach ($galleryImages as $index => $galleryImage): ?>
-            <?php $galleryImageUrl = detailAssetUrl((string) $galleryImage); ?>
-            <button
-              type="button"
-              class="actd-thumb <?= $index === 0 ? 'is-active' : '' ?>"
-              data-src="<?= detailEscape($galleryImageUrl) ?>"
-              data-caption="<?= detailEscape($imageCaption !== '' ? $imageCaption : $title) ?>"
-              aria-label="<?= detailEscape($labels['photo']) ?> <?= $index + 1 ?>"
-            >
-              <img src="<?= detailEscape($galleryImageUrl) ?>" alt="" loading="lazy">
-            </button>
-          <?php endforeach; ?>
-        </div>
+<?php if ($galleryImages): ?>
+  <section class="container">
+    <div
+      class="actd-card actd-gallery"
+      id="actdGallery"
+      data-photo-label="<?= detailEscape($labels['photo']) ?>"
+    >
+      <div class="actd-card__head">
+        <h2><i class="fa-regular fa-images"></i> <?= detailEscape($labels['gallery']) ?></h2>
+        <div class="actd-gallery__tools"></div>
       </div>
-    </section>
-  <?php endif; ?>
+
+      <!-- Desktop carousel: keep its existing layout and controls -->
+      <div class="actd-stage" id="actdStage" tabindex="0" aria-roledescription="carousel">
+        <img
+          id="actdMain"
+          src="<?= detailEscape(detailAssetUrl((string) $galleryImages[0])) ?>"
+          alt="<?= detailEscape($title) ?>"
+        >
+
+        <?php if (count($galleryImages) > 1): ?>
+          <button type="button" class="actd-arrow actd-arrow--prev" id="actdPrev" aria-label="Previous">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button type="button" class="actd-arrow actd-arrow--next" id="actdNext" aria-label="Next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        <?php endif; ?>
+      </div>
+
+      <div class="actd-thumbs-meta">
+        <span><i class="fa-regular fa-hand-pointer"></i> <?= detailEscape($labels['click_photo']) ?></span>
+        <strong><?= count($galleryImages) ?> <?= detailEscape($labels['photos_total']) ?></strong>
+      </div>
+
+      <div class="actd-thumbs" id="actdThumbs">
+        <?php foreach ($galleryImages as $index => $galleryImage): ?>
+          <?php $galleryImageUrl = detailAssetUrl((string) $galleryImage); ?>
+          <button
+            type="button"
+            class="actd-thumb <?= $index === 0 ? 'is-active' : '' ?>"
+            data-src="<?= detailEscape($galleryImageUrl) ?>"
+            aria-label="<?= detailEscape($labels['photo']) ?> <?= $index + 1 ?>"
+          >
+            <img src="<?= detailEscape($galleryImageUrl) ?>" alt="" loading="lazy">
+          </button>
+        <?php endforeach; ?>
+      </div>
+
+      <!-- Mobile: show each gallery image in a vertical list -->
+      <div class="actd-mobile-gallery">
+        <?php foreach ($galleryImages as $index => $galleryImage): ?>
+          <figure class="actd-mobile-gallery__item">
+            <img
+              src="<?= detailEscape(detailAssetUrl((string) $galleryImage)) ?>"
+              alt="<?= detailEscape($title) ?> — <?= $index + 1 ?>"
+              loading="lazy"
+            >
+          </figure>
+        <?php endforeach; ?>
+      </div>
+
+
+    </div>
+  </section>
+<?php endif; ?>
 
   <!-- ===== RECENT REPORTS ===== -->
   <section class="container actd-related" id="actdRelated">
@@ -811,8 +799,7 @@ if ($pageDescription === '') {
     const button = thumbs[currentIndex];
 
     mainImage.src = button.dataset.src || "";
-    mainImage.alt = button.dataset.caption || "";
-    if (caption) caption.textContent = button.dataset.caption || "";
+    mainImage.alt = button.dataset.alt || "";
 
     thumbs.forEach((thumb, thumbIndex) => {
       thumb.classList.toggle("is-active", thumbIndex === currentIndex);

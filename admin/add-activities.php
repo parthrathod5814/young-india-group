@@ -274,9 +274,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $title = activityPlainText((string) ($input['title'] ?? ''), 200);
         $shortDescription = activityPlainText((string) ($input['short_description'] ?? ''), 300);
-        $contextSp = activityCleanHtml((string) ($input['context_background'] ?? ''));
-        $detailHtml = activityCleanHtml((string) ($input['detailed_description'] ?? ''));
-        $featureCaption = activityPlainText((string) ($input['image_caption'] ?? ''), 255);
+        $description = activityCleanHtml(
+            (string) ($input['description'] ?? '')
+        );
 
         if ($title === '') {
             $errors[] = $label . ': title is required.';
@@ -286,20 +286,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = $label . ': short description is required.';
         }
 
-        if (trim(strip_tags($contextSp)) === '') {
-            $errors[] = $label . ': context and background is required.';
-        }
-
-        if (trim(strip_tags($detailHtml)) === '') {
-            $errors[] = $label . ': detailed description is required.';
+        if (trim(strip_tags($description)) === '') {
+            $errors[] = $label . ': description is required.';
         }
 
         $translations[$language] = [
             'title' => $title,
             'short_description' => $shortDescription,
-            'context_background' => $contextSp,
-            'detailed_description' => $detailHtml,
-            'image_caption' => $featureCaption,
+            'description' => $description,
         ];
     }
 
@@ -393,7 +387,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':area' => $area,
             ':activity_date' => $activityDate,
             ':status' => $status,
-            ':description' => $gu['detailed_description'],
+            ':description' => $gu['description'],
             ':featured_image' => $featuredStored['path'],
             ':created_by' => $createdBy,
         ]);
@@ -406,21 +400,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $translationStmt = $pdo->prepare(
             'INSERT INTO activity_translations
-                (activity_id, language, title, short_description, context_background, description, image_caption)
-             VALUES
-                (:activity_id, :language, :title, :short_description, :context_background, :description, :image_caption)'
+                (activity_id, language, title, short_description, description)
+            VALUES
+                (:activity_id, :language, :title, :short_description, :description)'
         );
 
         foreach ($translations as $language => $translation) {
-            $translationStmt->execute([
-                ':activity_id' => $activityId,
-                ':language' => $language,
-                ':title' => $translation['title'],
-                ':short_description' => $translation['short_description'],
-                ':context_background' => $translation['context_background'],
-                ':description' => $translation['detailed_description'],
-                ':image_caption' => $translation['image_caption'] !== '' ? $translation['image_caption'] : null,
-            ]);
+          $translationStmt->execute([
+              ':activity_id' => $activityId,
+              ':language' => $language,
+              ':title' => $translation['title'],
+              ':short_description' => $translation['short_description'],
+              ':description' => $translation['description'],
+          ]);
         }
 
         if (!empty($galleryStored)) {
@@ -589,71 +581,57 @@ $oldTranslations = is_array($old['translations'] ?? null) ? $old['translations']
                       </div>
 
                       <div class="adm-field is-wide">
-                        <label>Context &amp; background (<?= activityEscape($label) ?>) *</label>
-                        <div class="adm-editor">
-                          <div class="adm-editor__bar">
-                            <button type="button" data-editor-command="bold" title="Bold"><i class="fa-solid fa-bold"></i></button>
-                            <button type="button" data-editor-command="italic" title="Italic"><i class="fa-solid fa-italic"></i></button>
-                            <button type="button" data-editor-command="underline" title="Underline"><i class="fa-solid fa-underline"></i></button>
-                            <button type="button" data-editor-command="formatBlock:h2" title="Heading"><i class="fa-solid fa-heading"></i></button>
-                            <button type="button" data-editor-command="formatBlock:p" title="Paragraph"><i class="fa-solid fa-paragraph"></i></button>
-                            <button type="button" data-editor-command="insertUnorderedList" title="Bullet list"><i class="fa-solid fa-list-ul"></i></button>
-                            <button type="button" data-editor-command="insertOrderedList" title="Numbered list"><i class="fa-solid fa-list-ol"></i></button>
-                            <button type="button" data-editor-command="createLink" title="Insert link"><i class="fa-solid fa-link"></i></button>
-                          </div>
+                      <label>Description (<?= activityEscape($label) ?>) *</label>
 
-                          <div
-                            class="adm-editor__area"
-                            contenteditable="true"
-                            data-context-editor="<?= activityEscape($language) ?>"
-                            aria-label="Context and background in <?= activityEscape($label) ?>"
-                          ><?= activityCleanHtml((string) ($translation['context_background'] ?? '')) ?></div>
+                      <div class="adm-editor">
+                        <div class="adm-editor__bar">
+                          <button type="button" data-editor-command="bold" title="Bold">
+                            <i class="fa-solid fa-bold"></i>
+                          </button>
 
-                          <textarea
-                            name="translations[<?= $language ?>][context_background]"
-                            data-context-value="<?= activityEscape($language) ?>"
-                            hidden
-                          ><?= activityEscape($translation['context_background'] ?? '') ?></textarea>
+                          <button type="button" data-editor-command="italic" title="Italic">
+                            <i class="fa-solid fa-italic"></i>
+                          </button>
+
+                          <button type="button" data-editor-command="underline" title="Underline">
+                            <i class="fa-solid fa-underline"></i>
+                          </button>
+
+                          <button type="button" data-editor-command="formatBlock:h2" title="Heading">
+                            <i class="fa-solid fa-heading"></i>
+                          </button>
+
+                          <button type="button" data-editor-command="formatBlock:p" title="Paragraph">
+                            <i class="fa-solid fa-paragraph"></i>
+                          </button>
+
+                          <button type="button" data-editor-command="insertUnorderedList" title="Bullet list">
+                            <i class="fa-solid fa-list-ul"></i>
+                          </button>
+
+                          <button type="button" data-editor-command="insertOrderedList" title="Numbered list">
+                            <i class="fa-solid fa-list-ol"></i>
+                          </button>
+
+                          <button type="button" data-editor-command="createLink" title="Insert link">
+                            <i class="fa-solid fa-link"></i>
+                          </button>
                         </div>
+
+                        <div
+                          class="adm-editor__area"
+                          contenteditable="true"
+                          data-description-editor="<?= activityEscape($language) ?>"
+                          aria-label="Description in <?= activityEscape($label) ?>"
+                        ><?= activityCleanHtml((string) ($translation['description'] ?? '')) ?></div>
+
+                        <textarea
+                          name="translations[<?= $language ?>][description]"
+                          data-description-value="<?= activityEscape($language) ?>"
+                          hidden
+                        ><?= activityEscape($translation['description'] ?? '') ?></textarea>
                       </div>
-
-                      <div class="adm-field is-wide">
-                        <label>Detailed description (<?= activityEscape($label) ?>) *</label>
-                        <div class="adm-editor">
-                          <div class="adm-editor__bar">
-                            <button type="button" data-editor-command="bold" title="Bold"><i class="fa-solid fa-bold"></i></button>
-                            <button type="button" data-editor-command="italic" title="Italic"><i class="fa-solid fa-italic"></i></button>
-                            <button type="button" data-editor-command="underline" title="Underline"><i class="fa-solid fa-underline"></i></button>
-                            <button type="button" data-editor-command="formatBlock:h2" title="Heading"><i class="fa-solid fa-heading"></i></button>
-                            <button type="button" data-editor-command="formatBlock:p" title="Paragraph"><i class="fa-solid fa-paragraph"></i></button>
-                            <button type="button" data-editor-command="insertUnorderedList" title="Bullet list"><i class="fa-solid fa-list-ul"></i></button>
-                            <button type="button" data-editor-command="insertOrderedList" title="Numbered list"><i class="fa-solid fa-list-ol"></i></button>
-                            <button type="button" data-editor-command="createLink" title="Insert link"><i class="fa-solid fa-link"></i></button>
-                          </div>
-
-                          <div
-                            class="adm-editor__area"
-                            contenteditable="true"
-                            data-detail-editor="<?= activityEscape($language) ?>"
-                            aria-label="Detailed description in <?= activityEscape($label) ?>"
-                          ><?= activityCleanHtml((string) ($translation['detailed_description'] ?? '')) ?></div>
-
-                          <textarea
-                            name="translations[<?= $language ?>][detailed_description]"
-                            data-detail-value="<?= activityEscape($language) ?>"
-                            hidden
-                          ><?= activityEscape($translation['detailed_description'] ?? '') ?></textarea>
-                        </div>
-                      </div>
-
-                      <div class="adm-field is-wide">
-                        <label for="caption-<?= $language ?>">Featured image caption (<?= activityEscape($label) ?>)</label>
-                        <input id="caption-<?= $language ?>"
-                               name="translations[<?= $language ?>][image_caption]"
-                               type="text"
-                               maxlength="255"
-                               value="<?= activityEscape($translation['image_caption'] ?? '') ?>">
-                      </div>
+                    </div>
                     </div>
                   <?php endforeach; ?>
                 </fieldset>
@@ -722,7 +700,6 @@ $oldTranslations = is_array($old['translations'] ?? null) ? $old['translations']
   outline-offset: 1px;
 }
 </style>
-
 <script>
 (() => {
   const tabs = document.querySelectorAll('[data-language-tab]');
@@ -730,7 +707,8 @@ $oldTranslations = is_array($old['translations'] ?? null) ? $old['translations']
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      const lang = tab.dataset.languageTab;
+      const language = tab.dataset.languageTab;
+
       tabs.forEach(item => {
         const active = item === tab;
         item.classList.toggle('is-active', active);
@@ -738,14 +716,17 @@ $oldTranslations = is_array($old['translations'] ?? null) ? $old['translations']
       });
 
       panels.forEach(panel => {
-        panel.hidden = panel.dataset.languagePanel !== lang;
+        panel.hidden = panel.dataset.languagePanel !== language;
       });
     });
   });
 
   document.querySelectorAll('[data-editor-command]').forEach(button => {
     button.addEventListener('click', () => {
-      const editor = button.closest('.adm-editor')?.querySelector('[contenteditable="true"]');
+      const editor = button
+        .closest('.adm-editor')
+        ?.querySelector('[contenteditable="true"]');
+
       if (!editor) return;
 
       editor.focus();
@@ -753,9 +734,15 @@ $oldTranslations = is_array($old['translations'] ?? null) ? $old['translations']
 
       if (command === 'createLink') {
         const url = prompt('Enter a link URL:');
-        if (url) document.execCommand('createLink', false, url);
+        if (url) {
+          document.execCommand('createLink', false, url);
+        }
       } else if (command.startsWith('formatBlock:')) {
-        document.execCommand('formatBlock', false, command.split(':')[1]);
+        document.execCommand(
+          'formatBlock',
+          false,
+          command.split(':')[1]
+        );
       } else {
         document.execCommand(command, false, null);
       }
@@ -763,15 +750,12 @@ $oldTranslations = is_array($old['translations'] ?? null) ? $old['translations']
   });
 
   document.getElementById('form-activities')?.addEventListener('submit', () => {
-    document.querySelectorAll('[data-context-editor]').forEach(editor => {
-      const target = document.querySelector(`[data-context-value="${editor.dataset.contextEditor}"]`);
-      if (target) {
-        target.value = editor.innerHTML.trim();
-      }
-    });
+    document.querySelectorAll('[data-description-editor]').forEach(editor => {
+      const language = editor.dataset.descriptionEditor;
+      const target = document.querySelector(
+        `[data-description-value="${language}"]`
+      );
 
-    document.querySelectorAll('[data-detail-editor]').forEach(editor => {
-      const target = document.querySelector(`[data-detail-value="${editor.dataset.detailEditor}"]`);
       if (target) {
         target.value = editor.innerHTML.trim();
       }
@@ -779,6 +763,7 @@ $oldTranslations = is_array($old['translations'] ?? null) ? $old['translations']
   });
 
   const toast = document.getElementById('toast');
+
   if (toast?.dataset.message) {
     toast.textContent = toast.dataset.message;
     toast.classList.add('is-show');
@@ -791,7 +776,6 @@ $oldTranslations = is_array($old['translations'] ?? null) ? $old['translations']
       toast.classList.remove('is-show', 'is-error');
     }, 6000);
   }
-
 })();
 </script>
 

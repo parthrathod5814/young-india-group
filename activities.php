@@ -213,9 +213,7 @@ function fetchActivityPage(PDO $pdo, int $featuredId, int $offset, int $limit): 
             a.created_at,
             t.title AS gujarati_title,
             t.short_description,
-            t.context_background AS gujarati_context_background,
-            t.description AS translation_description,
-            t.image_caption
+            t.description AS translation_description
          FROM activities AS a
          INNER JOIN activity_translations AS t
             ON t.activity_id = a.id
@@ -318,10 +316,8 @@ try {
             a.featured_image,
             a.created_at,
             t.title AS gujarati_title,
-            t.context_background AS gujarati_context_background,
             t.short_description,
-            t.description AS translation_description,
-            t.image_caption
+            t.description AS translation_description
          FROM activities AS a
          INNER JOIN activity_translations AS t
             ON t.activity_id = a.id
@@ -390,7 +386,9 @@ $featuredTitle = trim((string) ($featuredActivity['gujarati_title'] ?? ''));
 $featuredDescription = '';
 
 if ($featuredActivity) {
-    $context = (string) ($featuredActivity['gujarati_context_background'] ?? '');
+    $context = (string) ($featuredDescription = $featuredActivity
+    ? activityGujaratiDescription($featuredActivity)
+    : '');
 
     $featuredDescription = html_entity_decode(
         strip_tags($context),

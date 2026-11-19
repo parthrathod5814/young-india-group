@@ -1028,14 +1028,6 @@ h1, h2, h3 { font-family: var(--font-heading); color: var(--purple-900); line-he
 }
 
 
-
-
-
-
-
-
-
-
 /* =========================================================
    Activities & News  |  activities.css  (activities.html only)
 
@@ -1245,15 +1237,13 @@ h1, h2, h3 { font-family: var(--font-heading); color: var(--purple-900); line-he
 }
 
 
-
-
-
 /* =========================================================
    Volunteer Network  |  volunteers.css  (volunteers.html only)
 
    - Load AFTER style.css (uses its colours, fonts, header, footer, buttons)
    - Every class here starts with "volunteer-" so it cannot clash with other pages
    ========================================================= */
+
 
 
 /* ---------- 1. HERO + STATS ---------- */

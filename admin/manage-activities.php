@@ -366,45 +366,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ? $postedTranslations[$language]
             : [];
 
-        $title = activityManagePlainText((string) ($input['title'] ?? ''), 200);
-        $shortDescription = activityManagePlainText(
-            (string) ($input['short_description'] ?? ''),
-            300
-        );
-        $contextBackground = activityManageCleanHtml(
-            (string) ($input['context_background'] ?? '')
-        );
-        $description = activityManageCleanHtml(
-            (string) ($input['description'] ?? '')
-        );
-        $imageCaption = activityManagePlainText(
-            (string) ($input['image_caption'] ?? ''),
-            255
-        );
+              $title = activityManagePlainText(
+                  (string) ($input['title'] ?? ''),
+                  200
+              );
 
-        if ($title === '') {
-            $errors[] = $label . ': title is required.';
-        }
+              $shortDescription = activityManagePlainText(
+                  (string) ($input['short_description'] ?? ''),
+                  300
+              );
 
-        if ($shortDescription === '') {
-            $errors[] = $label . ': short description is required.';
-        }
+              $description = activityManageCleanHtml(
+                  (string) ($input['description'] ?? '')
+              );
 
-        if (trim(strip_tags($contextBackground)) === '') {
-            $errors[] = $label . ': context and background is required.';
-        }
+              if ($title === '') {
+                  $errors[] = $label . ': title is required.';
+              }
 
-        if (trim(strip_tags($description)) === '') {
-            $errors[] = $label . ': detailed description is required.';
-        }
+              if ($shortDescription === '') {
+                  $errors[] = $label . ': short description is required.';
+              }
 
-        $translations[$language] = [
-            'title' => $title,
-            'short_description' => $shortDescription,
-            'context_background' => $contextBackground,
-            'description' => $description,
-            'image_caption' => $imageCaption,
-        ];
+              if (trim(strip_tags($description)) === '') {
+                  $errors[] = $label . ': description is required.';
+              }
+
+              $translations[$language] = [
+                  'title' => $title,
+                  'short_description' => $shortDescription,
+                  'description' => $description,
+              ];
     }
 
     if (!in_array($category, $allowedCategories, true)) {
@@ -576,37 +568,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              WHERE activity_id = :activity_id AND language = :language'
         );
 
-        $translationUpdate = $pdo->prepare(
-            'UPDATE activity_translations
-             SET title = :title,
-                 short_description = :short_description,
-                 context_background = :context_background,
-                 description = :description,
-                 image_caption = :image_caption
-             WHERE activity_id = :activity_id AND language = :language'
-        );
+              $translationUpdate = $pdo->prepare(
+                  'UPDATE activity_translations
+                  SET title = :title,
+                      short_description = :short_description,
+                      description = :description
+                  WHERE activity_id = :activity_id AND language = :language'
+              );
 
-        $translationInsert = $pdo->prepare(
-            'INSERT INTO activity_translations
-                (activity_id, language, title, short_description, context_background,
-                 description, image_caption)
-             VALUES
-                (:activity_id, :language, :title, :short_description, :context_background,
-                 :description, :image_caption)'
-        );
+              $translationInsert = $pdo->prepare(
+                  'INSERT INTO activity_translations
+                      (activity_id, language, title, short_description, description)
+                  VALUES
+                      (:activity_id, :language, :title, :short_description, :description)'
+              );
 
         foreach ($translations as $language => $translation) {
-            $values = [
-                ':activity_id' => $id,
-                ':language' => $language,
-                ':title' => $translation['title'],
-                ':short_description' => $translation['short_description'],
-                ':context_background' => $translation['context_background'],
-                ':description' => $translation['description'],
-                ':image_caption' => $translation['image_caption'] !== ''
-                    ? $translation['image_caption']
-                    : null,
-            ];
+              $values = [
+                  ':activity_id' => $id,
+                  ':language' => $language,
+                  ':title' => $translation['title'],
+                  ':short_description' => $translation['short_description'],
+                  ':description' => $translation['description'],
+              ];
 
             $translationCheck->execute([
                 ':activity_id' => $id,
@@ -698,12 +682,11 @@ try {
     );
     $activities = $activityStmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $translationStmt = $pdo->query(
-        'SELECT activity_id, language, title, short_description,
-                context_background, description, image_caption
-         FROM activity_translations
-         WHERE language IN ("gu", "en", "hi")'
-    );
+      $translationStmt = $pdo->query(
+          'SELECT activity_id, language, title, short_description, description
+          FROM activity_translations
+          WHERE language IN ("gu", "en", "hi")'
+      );
 
     $translationsByActivity = [];
     foreach ($translationStmt->fetchAll(PDO::FETCH_ASSOC) as $translation) {
@@ -976,7 +959,7 @@ $csrfToken = (string) $_SESSION['activity_manage_csrf_token'];
                   </div>
 
                   <div class="adm-field is-wide">
-                    <label>Context &amp; background (<?= activityManageEscape($label) ?>) *</label>
+                    <label>Description (<?= activityManageEscape($label) ?>) *</label>
                     <div class="adm-editor">
                       <div class="adm-editor__bar">
                         <button type="button" data-editor-command="bold" title="Bold"><i class="fa-solid fa-bold"></i></button>
@@ -987,56 +970,20 @@ $csrfToken = (string) $_SESSION['activity_manage_csrf_token'];
                         <button type="button" data-editor-command="insertUnorderedList" title="Bullet list"><i class="fa-solid fa-list-ul"></i></button>
                         <button type="button" data-editor-command="insertOrderedList" title="Numbered list"><i class="fa-solid fa-list-ol"></i></button>
                       </div>
-                      <div
-                        class="adm-editor__area"
-                        contenteditable="true"
-                        data-rich-editor="context-<?= activityManageEscape($language) ?>"
-                        aria-label="Context and background in <?= activityManageEscape($label) ?>"
-                      ></div>
-                      <textarea
-                        name="translations[<?= activityManageEscape($language) ?>][context_background]"
-                        data-rich-value="context-<?= activityManageEscape($language) ?>"
-                        hidden
-                      ></textarea>
-                    </div>
-                  </div>
 
-                  <div class="adm-field is-wide">
-                    <label>Detailed description (<?= activityManageEscape($label) ?>) *</label>
-                    <div class="adm-editor">
-                      <div class="adm-editor__bar">
-                        <button type="button" data-editor-command="bold" title="Bold"><i class="fa-solid fa-bold"></i></button>
-                        <button type="button" data-editor-command="italic" title="Italic"><i class="fa-solid fa-italic"></i></button>
-                        <button type="button" data-editor-command="underline" title="Underline"><i class="fa-solid fa-underline"></i></button>
-                        <button type="button" data-editor-command="formatBlock:h2" title="Heading"><i class="fa-solid fa-heading"></i></button>
-                        <button type="button" data-editor-command="formatBlock:p" title="Paragraph"><i class="fa-solid fa-paragraph"></i></button>
-                        <button type="button" data-editor-command="insertUnorderedList" title="Bullet list"><i class="fa-solid fa-list-ul"></i></button>
-                        <button type="button" data-editor-command="insertOrderedList" title="Numbered list"><i class="fa-solid fa-list-ol"></i></button>
-                      </div>
                       <div
                         class="adm-editor__area"
                         contenteditable="true"
                         data-rich-editor="description-<?= activityManageEscape($language) ?>"
-                        aria-label="Detailed description in <?= activityManageEscape($label) ?>"
+                        aria-label="Description in <?= activityManageEscape($label) ?>"
                       ></div>
+
                       <textarea
                         name="translations[<?= activityManageEscape($language) ?>][description]"
                         data-rich-value="description-<?= activityManageEscape($language) ?>"
                         hidden
                       ></textarea>
                     </div>
-                  </div>
-
-                  <div class="adm-field is-wide">
-                    <label for="edit-caption-<?= activityManageEscape($language) ?>">
-                      Featured image caption (<?= activityManageEscape($label) ?>)
-                    </label>
-                    <input
-                      id="edit-caption-<?= activityManageEscape($language) ?>"
-                      name="translations[<?= activityManageEscape($language) ?>][image_caption]"
-                      type="text"
-                      maxlength="255"
-                    >
                   </div>
                 </div>
               <?php endforeach; ?>
@@ -1242,30 +1189,23 @@ $csrfToken = (string) $_SESSION['activity_manage_csrf_token'];
 
           const translations = activity.translations || {};
 
-          for (const language of ['gu', 'en', 'hi']) {
-            const translation = translations[language] || {};
+            for (const language of ['gu', 'en', 'hi']) {
+              const translation = translations[language] || {};
 
-            document.getElementById(`edit-title-${language}`).value = translation.title || '';
-            document.getElementById(`edit-short-${language}`).value =
-              translation.short_description || '';
-            document.getElementById(`edit-caption-${language}`).value =
-              translation.image_caption || '';
+              document.getElementById(`edit-title-${language}`).value =
+                translation.title || '';
 
-            const contextEditor = document.querySelector(
-              `[data-rich-editor="context-${language}"]`
-            );
-            const descriptionEditor = document.querySelector(
-              `[data-rich-editor="description-${language}"]`
-            );
+              document.getElementById(`edit-short-${language}`).value =
+                translation.short_description || '';
 
-            if (contextEditor) {
-              contextEditor.innerHTML = translation.context_background || '';
+              const descriptionEditor = document.querySelector(
+                `[data-rich-editor="description-${language}"]`
+              );
+
+              if (descriptionEditor) {
+                descriptionEditor.innerHTML = translation.description || '';
+              }
             }
-
-            if (descriptionEditor) {
-              descriptionEditor.innerHTML = translation.description || '';
-            }
-          }
 
           const imageBox = document.getElementById('currentFeaturedImage');
           imageBox.replaceChildren();

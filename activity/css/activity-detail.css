@@ -188,3 +188,42 @@ button.actd-pill:hover { background: #dccdec; }
 @media (prefers-reduced-motion: reduce) {
   .actd-stage > img, .actd-thumb, .actd-news, .actd-news__image img { transition: none; }
 }
+
+
+
+/* Hide the mobile-only gallery on desktop and tablet. */
+.actd-mobile-gallery {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* On mobile, show the vertical list instead of the carousel. */
+  .actd-gallery .actd-stage,
+  .actd-gallery .actd-thumbs-meta,
+  .actd-gallery .actd-thumbs {
+    display: none;
+  }
+
+  .actd-gallery .actd-mobile-gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .actd-gallery .actd-mobile-gallery__item {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .actd-gallery .actd-mobile-gallery__item img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}

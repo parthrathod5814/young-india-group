@@ -217,6 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const filters = { category: "all", taluka: "all", query: "" };
 
 const volunteerById = (id) => document.getElementById(id);
+const activityById = (id) => document.getElementById(id);
 
 // Every filterable item (the flagship story + the cards) has data-activity
 const items = Array.from(document.querySelectorAll("[data-activity]"));
@@ -422,6 +423,8 @@ function initVolunteerForm() {
   const status = volunteerById("volunteerStatus");
   const success = volunteerById("volunteerSuccess");
 
+if (!form || !status || !success) return;
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -466,6 +469,8 @@ function initGrievanceForm() {
   const form = volunteerById("grievanceForm");
   const status = volunteerById("grievanceStatus");
 
+  if (!form || !status || !success) return;
+  
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
