@@ -167,6 +167,141 @@
       </div>
     </section>
 
+
+
+    <!-- ===== OUR ACTIVITIES & SOCIAL INITIATIVES ===== -->
+<section class="section section--bordered about-initiatives" id="activities">
+  <div class="container">
+    <div class="about-initiatives__heading">
+      <span class="about-initiatives__eyebrow">અમારી સેવાકીય પ્રવૃત્તિઓ</span>
+      <h2>Our Activities &amp; Social Initiatives</h2>
+      <p lang="gu">
+        માનવસેવા, સામાજિક ઉત્થાન અને રાષ્ટ્રનિર્માણના ધ્યેય સાથે
+        યંગ ઇન્ડિયા ગ્રુપ વિવિધ ક્ષેત્રોમાં સેવાકીય પહેલો કરે છે.
+      </p>
+    </div>
+
+    <div class="about-initiatives__grid">
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૦૧</span>
+          <h3 lang="gu">રાષ્ટ્રસેવા અને દેશભક્તિ</h3>
+        </div>
+        <p lang="gu">રાષ્ટ્રીય પ્રસંગો, શહીદ સ્મરણ અને નાગરિક જવાબદારી અંગે જાગૃતિ.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૦૨</span>
+          <h3 lang="gu">બાળસેવા અને આનંદની સફર</h3>
+        </div>
+        <p lang="gu">વંચિત બાળકો માટે આનંદપ્રવૃત્તિઓ, ઉત્સવો અને વ્યક્તિત્વ વિકાસની તકો.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૦૩</span>
+          <h3 lang="gu">શિક્ષણસેવા અને વિદ્યાર્થી સહાય</h3>
+        </div>
+        <p lang="gu">જરૂરિયાતમંદ વિદ્યાર્થીઓને અભ્યાસસામગ્રી, શૈક્ષણિક સહાય અને માર્ગદર્શન.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૦૪</span>
+          <h3 lang="gu">આરોગ્યસેવા અને જીવનરક્ષા</h3>
+        </div>
+        <p lang="gu">આરોગ્ય કેમ્પો, સારવાર સહયોગ, એમ્બ્યુલન્સ સેવા અને આરોગ્ય જાગૃતિ.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૦૫</span>
+          <h3 lang="gu">રક્તદાન અને દાન જાગૃતિ</h3>
+        </div>
+        <p lang="gu">“લોહીમાં છે માનવતા” અભિયાન, રક્તદાન શિબિરો અને અંગદાન અંગે જાગૃતિ.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૦૬</span>
+          <h3 lang="gu">અન્નસેવા અને પોષણ</h3>
+        </div>
+        <p lang="gu">જરૂરિયાતમંદો, હોસ્પિટલના દર્દીઓ અને વિશેષ સંભાળની જરૂર ધરાવતા લોકો માટે ભોજનસેવા.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૦૭</span>
+          <h3 lang="gu">વંચિત પરિવારોનું ઉત્થાન</h3>
+        </div>
+        <p lang="gu">સ્વચ્છતા કિટ, વસ્ત્રો, ધાબળા અને જીવનોપયોગી વસ્તુઓ દ્વારા સહયોગ.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૦૮</span>
+          <h3 lang="gu">દિવ્યાંગ અને CP બાળકોની સેવા</h3>
+        </div>
+        <p lang="gu">વિશેષ કાર્યક્રમો, આરોગ્ય માર્ગદર્શન અને સામાજિક સહભાગિતાને પ્રોત્સાહન.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૦૯</span>
+          <h3 lang="gu">વૃદ્ધાશ્રમ અને અનાથાશ્રમ સેવા</h3>
+        </div>
+        <p lang="gu">વડીલો અને બાળકો માટે સહયોગ, સન્માન, આત્મીય મુલાકાતો અને ઉત્સવ ઉજવણી.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૧૦</span>
+          <h3 lang="gu">મહિલા સુરક્ષા અને સશક્તીકરણ</h3>
+        </div>
+        <p lang="gu">મહિલા સન્માન, સુરક્ષા, આરોગ્ય અને નેતૃત્વ અંગે જાગૃતિ.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૧૧</span>
+          <h3 lang="gu">યુવા વિકાસ અને રાષ્ટ્રનિર્માણ</h3>
+        </div>
+        <p lang="gu">યુવાનોમાં શિસ્ત, નેતૃત્વ, વ્યક્તિત્વ વિકાસ અને સામાજિક જવાબદારીનું ઘડતર.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૧૨</span>
+          <h3 lang="gu">સંસ્કૃતિ અને સામાજિક સમરસતા</h3>
+        </div>
+        <p lang="gu">તહેવારોની સહભાગી ઉજવણી, ભારતીય સંસ્કૃતિનું જતન અને સામાજિક એકતા.</p>
+      </article>
+
+      <article class="about-initiative-card">
+        <div class="about-initiative-card__top">
+          <span class="about-initiative-card__number">૧૩</span>
+          <h3 lang="gu">આપત્તિ અને રાહતસેવા</h3>
+        </div>
+        <p lang="gu">કોરોના મહામારી સહિત કટોકટીના સમયમાં ભોજન, રાશન, દવા અને સારવારસહાય.</p>
+      </article>
+    </div>
+
+    <div class="about-initiatives__mission">
+      <h3 lang="gu">અમારો મુખ્ય હેતુ</h3>
+      <p lang="gu">
+        “માત્ર સહાય કરવી નહીં, પરંતુ સ્વાભિમાન જગાવવો; માત્ર ભોજન આપવું નહીં,
+        પરંતુ માનવતા જીવંત રાખવી; માત્ર શિક્ષણ આપવું નહીં, પરંતુ ભવિષ્ય ઘડવું;
+        અને સેવાકાર્યો દ્વારા રાષ્ટ્રનિર્માણમાં યોગદાન આપવું.”
+      </p>
+
+      <p class="about-initiatives__vision" lang="gu">
+        “સેવા એ જ સાધના, માનવતા એ જ આરાધના અને રાષ્ટ્રનિર્માણ એ જ જીવનનું ધ્યેય.”
+      </p>
+    </div>
+  </div>
+</section>
+
     <!-- ===== PROGRESS STATS ===== -->
     <section class="section">
       <div class="container">

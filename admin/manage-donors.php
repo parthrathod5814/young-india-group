@@ -600,14 +600,6 @@ try {
         if (event.key === 'Escape' && modal) modal.hidden = true;
       });
 
-      document.querySelectorAll('.delete-donor-form').forEach(form => {
-        form.addEventListener('submit', event => {
-          if (!window.confirm('Are you sure you want to delete this donor?')) {
-            event.preventDefault();
-          }
-        });
-      });
-
       const toast = document.getElementById('toast');
       if (toast?.dataset.message) {
         toast.textContent = toast.dataset.message;

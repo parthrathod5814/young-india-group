@@ -14,8 +14,8 @@
         <p>“યુવા શક્તિ, સેવા ભક્તિ” - મોરબી જિલ્લામાં ૨૪/૭ તાત્કાલિક રક્ત સહાય, શિક્ષણ સહાય, આરોગ્ય કેમ્પ અને સમાજ કલ્યાણ માટે સતત સમર્પિત લોકસેવા ટ્રસ્ટ.</p>
 
         <div class="footer__social">
-          <a href="https://www.facebook.com/YoungIndiaGroupMorbi" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/young_india_group?utm_source=ig_web_button_share_sheet&rpxt=ZDNlZDc0MzIxNw==" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/YoungIndiaGroupMorbi" aria-label="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/young_india_group?utm_source=ig_web_button_share_sheet&rpxt=ZDNlZDc0MzIxNw==" aria-label="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
           <!-- <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a> -->
           <a href="https://wa.me/919137891378" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>

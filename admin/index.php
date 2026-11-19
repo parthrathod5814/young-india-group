@@ -549,6 +549,7 @@ $openPopup = (string) ($_GET['popup'] ?? '');
     </div>
   </div>
 
+  
   <div class="adm-modal" id="modal-notifications" hidden>
     <div class="adm-modal__box is-wide" role="dialog" aria-modal="true">
       <div class="adm-modal__head">
